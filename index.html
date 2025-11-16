@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi Junction DJs</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #f5f5f5;
+            background-color: #4A0000;
+            background-image: linear-gradient(135deg, #2a0000 0%, #800000 50%, #4A0000 100%);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            color: #ffffff;
+            width: 20px;
+            height: 20px;
+        }
+
+        .swiper-button-prev:after,
+        .swiper-button-next:after {
+            font-size: 2rem;
+        }
+
+        .scrollbar-hide {
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .scrollbar-hide img {
+            pointer-events: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .swiper-button-prev {
+            left: 1.5rem;
+        }
+
+        .swiper-button-next {
+            right: 1.5rem;
+        }
+
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.5);
+            width: 10px;
+            height: 10px;
+            opacity: 1;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #ffffff;
+        }
+
+        .hero-card {
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .testimonials-bg {
+            background-image: url('https://i.imgur.com/uR1RjjP.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .testimonials-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 1;
+        }
+
+        .testimonials-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-img {
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .testimonial-img:hover {
+            filter: grayscale(0%);
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-pink': '#D946EF',
+                        'brand-pink-dark': '#C026D3',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+<header class="fixed top-0 left-0 w-full bg-black z-50 transition-all duration-300">
+    <nav class="container mx-auto max-w-7xl flex items-start md:items-center justify-center md:justify-between p-4 md:p-6 relative">
+
+        <div class="hidden md:block">
+            <a href="#" class="text-white text-2xl font-bold">
+                <img class="w-16 h-16" src="images/dj.png" alt="Logo">
+            </a>
+        </div>
+
+        <div>
+            <div class="md:hidden flex flex-col items-center">
+                <a href="#" class="text-white text-2xl font-bold">
+                    <img class="w-20 h-20" src="images/dj.png" alt="Logo">
+                </a>
+                <div class="mt-2">
+                    <a href="#" class="bg-brand-pink text-white uppercase font-bold px-4 py-2 rounded-md text-xs hover:bg-brand-pink-dark transition-colors">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Home</a>
+                <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Team</a>
+                <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Services</a>
+                <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Gallery</a>
+                <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Testimonials</a>
+            </div>
+        </div>
+
+        <div>
+            <div class="md:hidden absolute top-4 right-4">
+                <button class="text-white text-3xl">
+                    &#9776; 
+                </button>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="#" class="bg-brand-pink text-white uppercase font-bold px-6 py-3 rounded-md text-sm hover:bg-brand-pink-dark transition-colors">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+
+    <section class="hero-section relative h-[120vh] w-full overflow-hidden bg-black">
+        <div class="swiper h-full w-full">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h1.avif');">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h2.avif');">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="h-full w-full flex items-center justify-center bg-black">
+                        <video class="h-full w-full object-cover" autoplay loop muted playsinline>
+                            <source src="videos/h12.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h3.avif');"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h4.avif');"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="h-full w-full flex items-center justify-center bg-black">
+                        <video class="h-full w-full object-cover" autoplay loop muted playsinline>
+                            <source src="videos/h11.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
+        <div class="hero-card absolute top-1/2 left-1/2 z-10 w-11/12 max-w-2xl" style="transform: translate(-50%, -55%);">
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl border-2 border-white shadow-2xl p-2 md:p-4 text-center text-white">
+               <p class="text-2xl md:text-3xl font-light uppercase tracking-widest" style="transform: translateZ(20px);">
+    It's all about the
+</p>
+                <h1 class="text-7xl md:text-7xl font-black uppercase tracking-wider my-2" style="transform: translateZ(50px);">
+                    Experience
+                </h1>
+            </div>
+        </div>
+    </section>
+
+  <section class="testimonials-bg relative py-20 md:py-32">
+    <div class="testimonials-content container mx-auto max-w-7xl px-4">
+
+        <h2 class="text-center text-3xl sm:text-4xl font-bold mb-4 uppercase text-gray-800">
+            <span class="text-brand-pink">Testimonials</span>
+        </h2>
+        <div class="w-20 h-1 bg-brand-pink mx-auto mb-12 md:mb-16"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 lg:gap-16">
+
+            <div class="flex flex-col items-center text-center testimonial-card">
+                <div class="relative mb-4">
+                    <img src="images/t1.avif" alt="Nikita and Krishan" class="w-32 h-32 rounded-full object-cover shadow-lg testimonial-img">
+                    <div class="absolute bottom-1 right-1 bg-white p-2 rounded-full border border-gray-300 shadow-md">
+                        <i class="fas fa-camera text-brand-pink text-lg"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3">Nikita and Krishan</h3>
+                <p class="text-gray-600 italic leading-relaxed">
+                    "Fact: You are looking for a DJ.<br>
+                    Fact: You in the groom planning your wedding/event and all you want is MAJOR BANGERS.<br>
+                    Fact: You're the bride and you just want everything to be 'lit for the 'gram'.<br>
+                    ACTION: These are DJs other than Desi Junction DJs.<br><br>
+                    If you keep looking for a DJ after reading this far, may a divine spirit intervene. The team at Desi Junction made every step feel like a whip, DJ Chani made my husband move like a cross between MJ and JT. In all seriousness, there is no other option. There is nothing this company can't improve on. There is nothing this company can't do. They are in the business of making your event pop. To DJ Chani, DJ Paras, MC Anish, and Guru Dhali. Thank you from the bottom our hearts. We can’t stop thinking about the great time we had. You made us wish time travel was a thing, we want to go back.
+                </p>
+                <div class="text-brand-pink text-6xl md:text-7xl font-serif mt-6">&rdquo;</div>
+            </div>
+
+            <div class="flex flex-col items-center text-center testimonial-card">
+                <div class="relative mb-4">
+                    <img src="images/t2.avif" alt="Pooja and Ravi" class="w-32 h-32 rounded-full object-cover shadow-lg testimonial-img">
+                    <div class="absolute bottom-1 right-1 bg-white p-2 rounded-full border border-gray-300 shadow-md">
+                        <i class="fas fa-camera text-brand-pink text-lg"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3">Pooja and Ravi</h3>
+                <p class="text-gray-600 italic leading-relaxed">
+                    "We owe DJ Klasikhz a BIG THANK YOU for making everything we wanted come to fruition. You have no idea how many people came up to us during the reception and after saying how great the DJ was. I even had people texting me during the cocktail hour!<br><br>
+                    Def the best DJ I have seen for a wedding and even at clubs, lol. Thank you again for making our Baraat, Reception and Wedding the best there was. Again truly blessed we got to have DJ Klasikhz as our DJ!
+                </p>
+                <div class="text-brand-pink text-6xl md:text-7xl font-serif mt-6">&rdquo;</div>
+            </div>
+
+            <div class="flex flex-col items-center text-center testimonial-card">
+                <div class="relative mb-4">
+                    <img src="images/t3.avif" alt="Sheila and Shahneel" class="w-32 h-32 rounded-full object-cover shadow-lg testimonial-img">
+                    <div class="absolute bottom-1 right-1 bg-white p-2 rounded-full border border-gray-300 shadow-md">
+                        <i class="fas fa-camera text-brand-pink text-lg"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3">Sheila and Shahneel</h3>
+                <p class="text-gray-600 italic leading-relaxed">
+                    "Where to begin! My husband and I planned our wedding in a few short months and could not have imagined working with anyone other than Desi Junction DJs. We had heard about how amazing DJ Prince was through the grapevine but ecstatic he was still available on short notice! and he exceeded all our expectations! We felt confident that everything would run smoothly due to his professionalism and dedication to doing his best after a call with him before our events started for the week.<br><br>
+                    One of the most rapid things at our wedding was the DJ and music that kept everyone on the dance floor all night long. Both nights! No one wanted the night to end and which is what every bride and groom wants to hear when you're throwing the biggest party of your life. I had a special request to have only Indian music played Friday at our Sangeet and American music Saturday at our reception and Prince made it all flow perfectly. If I could plan it all over again, we would definitely splurge on Prince every time. I already know a few engaged couples that are considering booking him for their big day! Also, shoutout to the skilled Guru Dhali who was just as amazing and brought the beats our Sangeet night!
+                </p>
+                <div class="text-brand-pink text-6xl md:text-7xl font-serif mt-6">&rdquo;</div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-12 md:mt-16">
+            <button id="showMoreTestimonials" class="bg-transparent border-2 border-brand-pink text-brand-pink font-bold uppercase px-8 py-3 rounded-md hover:bg-brand-pink hover:text-white transition-colors">
+                Show More
+            </button>
+        </div>
+
+    </div>
+</section>
+
+    <section class="w-full min-h-screen py-20 md:py-32 px-4 md:px-10 ">
+        <div class="max-w-3xl mx-auto text-left md:text-center">
+            <h1 class="text-6xl md:text-8xl font-extrabold text-white mb-12 md:mb-16 tracking-tight">
+                DJ PRASHANT
+            </h1>
+            <div class="about-text text-white leading-relaxed text-center max-w-3xl mx-auto">
+                <p class="text-justify font-medium">
+                    Officially the World's #1 Club, DJ PRASHANTis a 360 nightlife experience featuring the world's
+                    best DJs, incredible production, plus so much more. <br><br>
+
+                    Through the unifying power of the dancefloor, we connect the worlds of music, art, and fashion.
+                    <br><br>
+
+                    DJ PRASHANT goes beyond the nightclub experience; it is a cultural epicentre where music
+                    and art bring people together to forge meaningful connections. <br><br>
+
+                    No matter where in the world you are from, once we are on the dancefloor, we become
+                    one. One movement. One tribe. One shared heartbeat. <br><br>
+
+                    As a multi-room venue, every element has been precision-engineered to deliver a new
+                    excellence in clubbing. <br><br>
+
+                </p>
+            </div>
+
+            <div class="mt-12 md:mt-16 flex justify-center">
+                <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-white font-semibold px-10 py-4 rounded-full text-sm uppercase tracking-wider shadow-lg transition-transform hover:bg-blue-700 hover:scale-105">
+                    Find Out More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section py-20 md:py-32">
+        <div class="container mx-auto max-w-7xl px-4">
+
+            <h2 class="text-center text-4xl font-bold mb-4 uppercase text-gray-800">
+                <span class="text-brand-pink">Services</span>
+            </h2>
+            <div class="w-20 h-1 bg-brand-pink mx-auto mb-16"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="group relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="images/DJs.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
+                        <h3 class="text-2xl font-bold mb-3">DJs</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            Want to leave your guests talking about your event for months? Desi Junction DJ’s will entertain your guests above and beyond your expectations. Our team of talented DJ’s will mix music live according to your likes and needs.
+                        </p>
+                        <a href="#" class="flex items-center text-sm font-semibold">
+                            Read More
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="images/MCs.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
+                        <h3 class="text-2xl font-bold mb-3">MCs</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            From formal events to full blown parties, our professional, well spoken emcees are all you need to keep your guests entertained for the entire event. From the moment the doors open to the moment the party ends our emcees will liven up the crowd and keep the energy high!
+                        </p>
+                        <a href="#" class="flex items-center text-sm font-semibold">
+                            Read More
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="images/Dhol players.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
+                        <h3 class="text-2xl font-bold mb-3">Dhol Players</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            There is nothing that ties western weddings back to their roots like live dhol drumming. Our dhol players can turn even the most shy guests in to dancing machines. Our dholis are able to entertain nonstop with drumming like you have never heard before!
+                        </p>
+                        <a href="#" class="flex items-center text-sm font-semibold">
+                            Read More
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="images/Premium sound package.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
+                        <h3 class="text-2xl font-bold mb-3">Premium Sound Packages</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            At Desi Junction DJs, we always invest in the highest quality sound equipment. With a full fleet of RCF Line Array speakers, we make sure every guest can hear every word of every speech before turning your ballroom into a full blown club.
+                        </p>
+                        <a href="#" class="flex items-center text-sm font-semibold">
+                            Read More
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="images/Intelligent Lighting.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
+                        <h3 class="text-2xl font-bold mb-3">Intelligent Lighting</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            Our intelligent lighting can be used in a variety of ways. We can add moving gobo effects around the room, spotlight certain areas of the room, or just utilize them to make your event feel like a Las Vegas Nightclub! Let us help make your dream a reality with our intelligent lighting!
+                        </p>
+                        <a href="#" class="flex items-center text-sm font-semibold">
+                            Read More
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="images/Uplighting.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
+                        <h3 class="text-2xl font-bold mb-3"> Uplighting</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            This is a must have! No matter which venue you have for your event, LED lighting will add a completely new look and feel. With our DMX lighting we are able to coordinate all uplights with a flick of a switch and change the color as needed.
+                        </p>
+                        <a href="#" class="flex items-center text-sm font-semibold">
+                            Read More
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="images/On Site Technicians.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
+                        <h3 class="text-2xl font-bold mb-3"> On Site Technicians</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            With the vast amount of professional grade equipment we set up, we need talented and experienced technicians to run the show. At Desi Junction DJs, we pride ourselves in being able to provide a concert level experience at your event!
+                        </p>
+                        <a href="#" class="flex items-center text-sm font-semibold">
+                            Read More
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="images/Sparkulars.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
+                        <h3 class="text-2xl font-bold mb-3"> Sparkulars</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            Sparkulars, or Cold Sparklers, are one of the newest innovations in special effects. These are great for entrances, first dances, and open dance floor! Ask us about our new ceiling mounted sparkulars!
+                        </p>
+                        <a href="#" class="flex items-center text-sm font-semibold">
+                            Read More
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="images/CO2.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
+                        <h3 class="text-2xl font-bold mb-3">CO2 Jets and Cannons</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            CO2 Jets and Cannons can help add that festival or concert feel to your event! We offer CO2 as a cannon, jets on stage, or both. Whichever you select, you won't go wrong! Ask us about adding CO2 to your event!
+                        </p>
+                        <a href="#" class="flex items-center text-sm font-semibold">
+                            Read More
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="images/Dancing on clouds.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
+                        <h3 class="text-2xl font-bold mb-3">Dancing on the Clouds</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            Our professional dry ice machines create a thick, white fog that hugs the floor. This is used to create that dreamy Bollywood effect of dancing in the clouds! The fog stays low to the ground so your guests will still be able to see every step you both make!
+                        </p>
+                        <a href="#" class="flex items-center text-sm font-semibold">
+                            Read More
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="relative w-full z-10 overflow-hidden">
+
+        <div class="text-center px-4 md:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold uppercase text-white mb-12 tracking-wider" style="filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.6)) drop-shadow(0 0 20px rgba(217, 70, 239, 0.4));">
+                WEAR THE VIBE
+            </h2>
+        </div>
+        <div id="slider-container" class="flex overflow-x-auto space-x-6 pb-6 snap-x snap-mandatory scrollbar-hide cursor-grab px-4 md:px-32" style="scroll-behavior: smooth;">
+
+            <div class="slider-item gradient-border-card flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[520px] md:h-[580px] text-white">
+                <div class="inner-card-content h-full relative rounded-xl overflow-hidden">
+                    <img src="t-shirt1.webp" alt="M ASCENTION T-SHIRT" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-end">
+                        <span class="bg-neutral-800/60 text-white/90 text-xs font-medium tracking-wider uppercase px-2 py-0.5 rounded mb-2">SHOP</span>
+                        <h3 class="h-24 text-3xl font-bold mt-1 text-white text-center flex items-center justify-center mb-4">
+                            T-SHIRT HEART PALM ANGELS DJ PRASHANT</h3>
+                        <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow">Buy
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-item gradient-border-card flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[520px] md:h-[580px] text-white">
+                <div class="inner-card-content h-full relative rounded-xl overflow-hidden">
+                    <img src="t-shirt2.webp" alt="DJ PRASHANTFC TOP" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-end">
+                        <span class="bg-neutral-800/60 text-white/90 text-xs font-medium tracking-wider uppercase px-2 py-0.5 rounded mb-2">SHOP</span>
+                        <h3 class="h-24 text-3xl font-bold mt-1 text-white text-center flex items-center justify-center mb-4">
+                            T-SHIRT PALM ANGELS DJ PRASHANT</h3>
+                        <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow">Buy
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-item gradient-border-card flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[520px] md:h-[580px] text-white">
+                <div class="inner-card-content h-full relative rounded-xl overflow-hidden">
+                    <img src="t-shirt3.jpg" alt="DJ PRASHANTCORE BLACK LOGO T-SHIRT" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-end">
+                        <span class="bg-neutral-800/60 text-white/90 text-xs font-medium tracking-wider uppercase px-2 py-0.5 rounded mb-2">SHOP</span>
+                        <h3 class="h-24 text-3xl font-bold mt-1 text-white text-center flex items-center justify-center mb-4">
+                            M ASCENTION T-SHIRT DJ</h3>
+                        <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow">Buy
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-item gradient-border-card flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[520px] md:h-[580px] text-white">
+                <div class="inner-card-content h-full relative rounded-xl overflow-hidden">
+                    <img src="t-shirt4.jpg" alt="T-SHIRT HEART PALM ANGELS" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-end">
+                        <span class="bg-neutral-800/60 text-white/90 text-xs font-medium tracking-wider uppercase px-2 py-0.5 rounded mb-2">SHOP</span>
+                        <h3 class="h-24 text-3xl font-bold mt-1 text-white text-center flex items-center justify-center mb-4">
+                            DJ PRASHANT FC TOP</h3>
+                        <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow">Buy
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-item gradient-border-card flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[520px] md:h-[580px] text-white">
+                <div class="inner-card-content h-full relative rounded-xl overflow-hidden">
+                    <img src="t-shirt5.jpg" alt="T-SHIRT PALM ANGELS" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-end">
+                        <span class="bg-neutral-800/60 text-white/90 text-xs font-medium tracking-wider uppercase px-2 py-0.5 rounded mb-2">SHOP</span>
+                        <h3 class="h-24 text-3xl font-bold mt-1 text-white text-center flex items-center justify-center mb-4">
+                            DJ PRASHANT CORE BLACK LOGO T-SHIRT</h3>
+                        <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow">Buy
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-item gradient-border-card flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[520px] md:h-[580px] text-white">
+                <div class="inner-card-content h-full relative rounded-xl overflow-hidden">
+                    <img src="t-shirt6.jpg" alt="Placeholder T-Shirt" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-end">
+                        <span class="bg-neutral-800/60 text-white/90 text-xs font-medium tracking-wider uppercase px-2 py-0.5 rounded mb-2">SHOP</span>
+                        <h3 class="h-24 text-3xl font-bold mt-1 text-white text-center flex items-center justify-center mb-4">
+                            CONNECTING CULTURES BLACK T-SHIRT</h3>
+                        <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow">Buy
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-item gradient-border-card flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[520px] md:h-[580px] text-white">
+                <div class="inner-card-content h-full relative rounded-xl overflow-hidden">
+                    <img src="t-shirt7.jpg" alt="Placeholder T-Shirt" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-end">
+                        <span class="bg-neutral-800/60 text-white/90 text-xs font-medium tracking-wider uppercase px-2 py-0.5 rounded mb-2">SHOP</span>
+                        <h3 class="h-24 text-3xl font-bold mt-1 text-white text-center flex items-center justify-center mb-4">
+                            DJ PRASHANT GLOBAL TANK</h3>
+                        <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow">Buy
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-item gradient-border-card flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[520px] md:h-[580px] text-white">
+                <div class="inner-card-content h-full relative rounded-xl overflow-hidden">
+                    <img src="t-shirt8.jpg" alt="Placeholder T-Shirt" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-end">
+                        <span class="bg-neutral-800/60 text-white/90 text-xs font-medium tracking-wider uppercase px-2 py-0.5 rounded mb-2">SHOP</span>
+                        <h3 class="h-24 text-3xl font-bold mt-1 text-white text-center flex items-center justify-center mb-4">
+                            HYBRID LOGO BLACK BABYDOLL TEE T-SHIRT</h3>
+                        <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow">Buy
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-item gradient-border-card flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[520px] md:h-[580px] text-white">
+                <div class="inner-card-content h-full relative rounded-xl overflow-hidden">
+                    <img src="t-shirt9.jpg" alt="Placeholder T-Shirt" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center justify-end">
+                        <span class="bg-neutral-800/60 text-white/90 text-xs font-medium tracking-wider uppercase px-2 py-0.5 rounded mb-2">SHOP</span>
+                        <h3 class="h-24 text-3xl font-bold mt-1 text-white text-center flex items-center justify-center mb-4">
+                            WORLD TOUR STICKER T-SHIRT</h3>
+                        <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow">Buy
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="pagination-dots" class="flex justify-center items-center space-x-2 mt-8">
+        </div>
+    </div>
+
+    <div class="w-full overflow-hidden relative z-10 mt-24">
+
+        <div class="text-center px-4 md:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold uppercase text-white mb-12 tracking-wider" style="filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.6)) drop-shadow(0 0 20px rgba(217, 70, 239, 0.4));">
+                EXCLUSIVE MIXES
+            </h2>
+        </div>
+
+        <div id="audio-carousel-container" class="flex overflow-x-auto space-x-6 pb-6 snap-x snap-mandatory scrollbar-hide cursor-grab px-4 md:pl-24 md:pr-10" style="scroll-behavior: smooth;">
+
+            <div class="audio-carousel-item bg-black rounded-3xl flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-[400px] text-white shadow-lg">
+                <div class="inner-card-content h-full flex flex-col">
+                    <div class="w-full aspect-square px-2 pt-2">
+                        <img src="images/m1.jpg" alt="Official Playlist" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <div class="px-6 pb-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block bg-white text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mt-4">Playlist</span>
+                            <h4 class="text-2xl font-black uppercase mt-4 mb-1 leading-tight" style="font-family: 'Neue Haas Grotesk Display', sans-serif;">Badtameez Dil x TV Off | Bollywood x Hip-Hop Mashup | DJ Prashant ft. Kendrick Lamar</h4>
+                        </div>
+                        <button onclick="window.location.href='https://djprashant.bandcamp.com/track/badtameez-dil-x-tv-off-bollywood-x-hip-hop-mashup-dj-prashant-ft-kendrick-lamar'" class="mt-6 w-full bg-gradient-to-r from-rose-600 to-fuchsia-700 text-white py-3 rounded-full font-semibold text-sm uppercase shadow-md hover:bg-blue-500 transition-colors">
+                            Listen
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="audio-carousel-item bg-black rounded-3xl flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-[400px] text-white shadow-lg">
+                <div class="inner-card-content h-full flex flex-col">
+                    <div class="w-full aspect-square px-2 pt-2">
+                        <img src="images/m2.jpg" alt="Jonathan Kaspar" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <div class="px-6 pb-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block bg-white text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mt-4">Playlist</span>
+                            <h4 class="text-2xl font-black uppercase mt-4 mb-1 leading-tight" style="font-family: 'Neue Haas Grotesk Display', sans-serif;">Qatal x Alameyo | Punjabi x Afrohouse Mashup | DJ Prashant | New Music 2025 ft. Guru Randhawa.</h4>
+                        </div>
+                        <button onclick="window.location.href='https://djprashant.bandcamp.com/track/qatal-x-alameyo-punjabi-x-afrohouse-mashup-dj-prashant-new-music-2025-ft-guru-randhawa'" class="mt-6 w-full bg-gradient-to-r from-rose-600 to-fuchsia-700 text-white py-3 rounded-full font-semibold text-sm uppercase shadow-md hover:bg-blue-500 transition-colors">
+                            Listen
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="audio-carousel-item bg-black rounded-3xl flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-[400px] text-white shadow-lg">
+                <div class="inner-card-content h-full flex flex-col">
+                    <div class="w-full aspect-square px-2 pt-2">
+                        <img src="images/m3.jpg" alt="Layla Benitez" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <div class="px-6 pb-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block bg-white text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mt-4">Playlist</span>
+                            <h4 class="text-2xl font-black uppercase mt-4 mb-1 leading-tight" style="font-family: 'Neue Haas Grotesk Display', sans-serif;">Ghoomar DJ Prashant. Bollywood Hip-Hop Desi Remix New Music</h4>
+                        </div>
+                        <button onclick="window.location.href='https://djprashant.bandcamp.com/track/ghoomar-dj-prashant-bollywood-hip-hop-desi-remix-new-music'" class="mt-6 w-full bg-gradient-to-r from-rose-600 to-fuchsia-700 text-white py-3 rounded-full font-semibold text-sm uppercase shadow-md hover:bg-blue-500 transition-colors">
+                            Listen
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="audio-carousel-item bg-black rounded-3xl flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-[400px] text-white shadow-lg">
+                <div class="inner-card-content h-full flex flex-col">
+                    <div class="w-full aspect-square px-2 pt-2">
+                        <img src="images/m4.jpg" alt="Eats Everything" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <div class="px-6 pb-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block bg-white text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mt-4">Playlist</span>
+                            <h4 class="text-2xl font-black uppercase mt-4 mb-1 leading-tight" style="font-family: 'Neue Haas Grotesk Display', sans-serif;">Chak De India. Bollywood-Afrohouse Remix. Independence Day Special New Music 2025-DJ Prashant</h4>
+                        </div>
+                        <button onclick="window.location.href='https://djprashant.bandcamp.com/track/chak-de-india-bollywood-afrohouse-remix-independence-day-special-new-music-2025-dj-prashant'" class="mt-6 w-full bg-gradient-to-r from-rose-600 to-fuchsia-700 text-white py-3 rounded-full font-semibold text-sm uppercase shadow-md hover:bg-blue-500 transition-colors">
+                            Listen
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="audio-carousel-item bg-black rounded-3xl flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-[400px] text-white shadow-lg">
+                <div class="inner-card-content h-full flex flex-col">
+                    <div class="w-full aspect-square px-2 pt-2">
+                        <img src="images/m5.jpg" alt="Official Playlist" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <div class="px-6 pb-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block bg-white text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mt-4">Playlist</span>
+                            <h4 class="text-2xl font-black uppercase mt-4 mb-1 leading-tight" style="font-family: 'Neue Haas Grotesk Display', sans-serif;">Sajna Ve Sajna x Galat Karam - Bollywood Desi Hip-Hop (Mashup) - DJ Prashant New Music 2025</h4>
+                        </div>
+                        <button onclick="window.location.href='https://djprashant.bandcamp.com/track/sajna-ve-sajna-x-galat-karam-bollywood-desi-hip-hop-mashup-dj-prashant-new-music-2025'" class="mt-6 w-full bg-gradient-to-r from-rose-600 to-fuchsia-700 text-white py-3 rounded-full font-semibold text-sm uppercase shadow-md hover:bg-blue-500 transition-colors">
+                            Listen
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="audio-carousel-item bg-black rounded-3xl flex-shrink-0 snap-center w-[calc(100vw-2rem)] max-w-sm md:w-[400px] text-white shadow-lg">
+                <div class="inner-card-content h-full flex flex-col">
+                    <div class="w-full aspect-square px-2 pt-2">
+                        <img src="images/m6.jpg" alt="Official Playlist" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <div class="px-6 pb-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block bg-white text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mt-4">Playlist</span>
+                            <h4 class="text-2xl font-black uppercase mt-4 mb-1 leading-tight" style="font-family: 'Neue Haas Grotesk Display', sans-serif;">Tujhe Sochta Hu x Yamore (Bollywood Afrohouse Remix) - DJ Prashant</h4>
+                        </div>
+                        <button onclick="window.location.href='https://djprashant.bandcamp.com/track/tujhe-sochta-hu-x-yamore-bollywood-afrohouse-remix-dj-prashant'" class="mt-6 w-full bg-gradient-to-r from-rose-600 to-fuchsia-700 text-white py-3 rounded-full font-semibold text-sm uppercase shadow-md hover:bg-blue-500 transition-colors">
+                            Listen
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="audio-pagination-dots" class="flex justify-center items-center space-x-2 mt-8">
+        </div>
+
+        <div class="mt-8 text-center px-4">
+            <a href="music.html" class="inline-block bg-gray-300 text-gray-900 text-sm font-semibold px-6 py-3 rounded-full hover:bg-gray-300 transition-colors">
+                Show All
+            </a>
+        </div>
+
+    </div>
+
+  <section class=" py-20 md:py-32">
+    <div class="container mx-auto max-w-7xl px-4">
+
+        <div class="flex flex-col items-center justify-center mb-12">
+            <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                <radialGradient id="insta-gradient" cx="30.148" cy="11.233" r="38.789" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#fd5" />
+                    <stop offset=".5" stop-color="#ff543e" />
+                    <stop offset="1" stop-color="#c837ab" />
+                </radialGradient>
+                <path fill="url(#insta-gradient)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992L5.99,14.017 c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20 C42.007,38.396,38.411,41.994,34.017,41.99z" />
+                <path fill="#fff" d="M34,40H14c-3.309,0-6-2.691-6-6V14c0-3.309,2.691-6,6-6h20c3.309,0,6,2.691,6,6v20 C40,37.309,37.309,40,34,40z M14,10c-2.206,0-4,1.794-4,4v20c0,2.206,1.794,4,4,4h20c2.206,0,4-1.794,4-4V14c0-2.206-1.794-4-4-4H14z" />
+                <path fill="#fff" d="M31.5,18c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5s1.5,0.672,1.5,1.5S32.328,18,31.5,18z" />
+                <path fill="#fff" d="M24,28c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4-4S26.206,20,24,20z M24,18c-3.309,0-6,2.691-6,6 s2.691,6,6,6s6-2.691,6-6S27.309,18,24,18z" />
+            </svg>
+            <span class="text-2xl font-semibold text-white mt-3">Follow us on <span class="font-bold">Instagram</span></span>
+        </div>
+
+        <div id="insta-gallery-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/gallery-1.mp4" alt="Gallery Video 1" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/gallery-2.mp4" alt="Gallery Video 2" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/gallery-3.mp4" alt="Gallery Video 3" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/gallery-4.mp4" alt="Gallery Video 4" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/gallery-5.mp4" alt="Gallery Video 5" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/gallery-6.mp4" alt="Gallery Video 6" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/gallery-7.mp4" alt="Gallery Video 7" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/gallery-8.mp4" alt="Gallery Video 8" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/gallery-9.mp4" alt="Gallery Video 9" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/gallery-10.mp4" alt="Gallery Video 10" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/h11.mp4" alt="Gallery Video 11" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group rounded-lg overflow-hidden shadow-lg insta-video-item">
+                <video src="videos/h12.mp4" alt="Gallery Video 12" class="gallery-video w-full h-96 object-cover" muted playsinline></video>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center play-icon-wrapper">
+                    <div class="w-16 h-16 bg-white bg-opacity-70 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 4l10 6-10 6V4z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center mt-16">
+            <a href="https://www.instagram.com/dreamsperfected?igsh=NjI4eGpyODduZjN1" class="inline-block 
+                        bg-white text-gray-900 
+                        border-2 border-white
+                        px-10 py-4 rounded-lg 
+                        font-extrabold uppercase tracking-wider 
+                        shadow-lg 
+                        hover:bg-brand-pink hover:text-white hover:border-brand-pink
+                        transform hover:-translate-y-1 
+                        transition-all duration-300 ease-in-out">
+                Book A Consult
+            </a>
+        </div>
+
+    </div>
+</section>
+
+    <div class="w-full px-4 md:px-8 relative z-10">
+        <div class="relative w-full max-w-7xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl">
+            <img src="images/c2.jpg" alt="Immersive Art Gallery" class="w-full h-[450px] md:h-[650px] lg:h-[750px] object-cover">
+            <div class="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-center text-white">
+                <h2 class="text-4xl md:text-5xl font-bold uppercase leading-tight mb-4">
+                    The World's First Immersive<br>Art Gallery in a Nightclub
+                </h2>
+                <a href="#" class="inline-block bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-8 py-3 font-semibold text-sm md:text-base hover:bg-gray-200 transition-colors">
+                    Read More
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full relative z-10 mt-16 overflow-hidden">
+
+        <div class="text-center px-4 md:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold uppercase text-white mb-12 tracking-wider" style="filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.6)) drop-shadow(0 0 20px rgba(217, 70, 239, 0.4));">
+                THE BUZZ
+            </h2>
+        </div>
+
+        <div class="w-full  overflow-hidden pl-12 pr-4 md:pl-24 md:pr-10">
+            <div id="news-carousel-container" class="flex overflow-x-auto space-x-6 pb-6 snap-x snap-mandatory scrollbar-hide cursor-grab" style="scroll-behavior: smooth;">
+
+                <div class="news-carousel-item relative w-[340px] md:w-[400px] h-[580px] rounded-3xl overflow-hidden flex-shrink-0 snap-center shadow-lg">
+                    <img src="n1.avif" alt="Miss Monique" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-between items-center h-64">
+                        <div class="text-center"> <span class="inline-block bg-white/30 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Article</span>
+                            <h3 class="text-2xl lg:text-3xl font-bold uppercase leading-tight mb-4">Watch: Miss Monique
+                                Live From DJ Prasant</h3>
+                        </div>
+                        <a href="#" class="inline-block bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow-md hover:bg-gray-200 transition-colors">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <div class="news-carousel-item relative w-[340px] md:w-[400px] h-[580px] rounded-3xl overflow-hidden flex-shrink-0 snap-center shadow-lg">
+                    <img src="n2.avif" alt="James Hype" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-between items-center h-64">
+                        <div class="text-center"> <span class="inline-block bg-white/30 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Article</span>
+                            <h3 class="text-2xl lg:text-3xl font-bold uppercase leading-tight mb-4">Watch: James Hype
+                                Ibiza Classics Set Live From A Gym</h3>
+                        </div>
+                        <a href="#" class="inline-block bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow-md hover:bg-gray-200 transition-colors">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <div class="news-carousel-item relative w-[340px] md:w-[400px] h-[580px] rounded-3xl overflow-hidden flex-shrink-0 snap-center shadow-lg">
+                    <img src="n3.avif" alt="Indira Paganotto" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-between items-center h-64">
+                        <div class="text-center"> <span class="inline-block bg-white/30 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Interview</span>
+                            <h3 class="text-2xl lg:text-3xl font-bold uppercase leading-tight mb-4">Indira Paganot to |
+                                The Road To Now</h3>
+                        </div>
+                        <a href="#" class="inline-block bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow-md hover:bg-gray-200 transition-colors">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <div class="news-carousel-item relative w-[340px] md:w-[400px] h-[580px] rounded-3xl overflow-hidden flex-shrink-0 snap-center shadow-lg">
+                    <img src="n4.avif" alt="DJ PRASHANTCrowd" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-between items-center h-64">
+                        <div class="text-center"> <span class="inline-block bg-white/30 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">News</span>
+                            <h3 class="text-2xl lg:text-3xl font-bold uppercase leading-tight mb-4">The DJ PRASHANT 2025
+                                Opening Party</h3>
+                        </div>
+                        <a href="#" class="inline-block bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow-md hover:bg-gray-200 transition-colors">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <div class="news-carousel-item relative w-[340px] md:w-[400px] h-[580px] rounded-3xl overflow-hidden flex-shrink-0 snap-center shadow-lg">
+                    <img src="n5.avif" alt="Club" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-between items-center h-64">
+                        <div class="text-center"> <span class="inline-block bg-white/30 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Article</span>
+                            <h3 class="text-2xl lg:text-3xl font-bold uppercase leading-tight mb-4">Another Amazing Night:
+                                Weekly Review</h3>
+                        </div>
+                        <a href="#" class_ ="inline-block bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow-md hover:bg-gray-200 transition-colors">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <div class="news-carousel-item relative w-[340px] md:w-[400px] h-[580px] rounded-3xl overflow-hidden flex-shrink-0 snap-center shadow-lg">
+                    <img src="n6.avif" alt="DJ" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-between items-center h-64">
+                        <div class="text-center"> <span class="inline-block bg-white/30 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Interview</span>
+                            <h3 class="text-2xl lg:text-3xl font-bold uppercase leading-tight mb-4">Catching Up With The
+                                Martinez Brothers</h3>
+                        </div>
+                        <a href="#" class="inline-block bg-gradient-to-r from-rose-600 to-fuchsia-700 text-black rounded-full px-7 py-2.5 font-semibold text-sm shadow-md hover:bg-gray-200 transition-colors">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="news-pagination-dots" class="flex justify-center items-center space-x-2 mt-8">
+        </div>
+
+        <div class="flex justify-center mt-8">
+            <a href="news.html" class="inline-block bg-neutral-200 text-black rounded-full px-8 py-3 font-semibold text-sm hover:bg-white transition-colors">
+                Show All
+            </a>
+        </div>
+    </div>
+
+
+    <footer class="w-full text-gray-300 py-16 px-4 sm:px-8 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="col-span-2 lg:col-span-2">
+                    <h3 class="text-lg font-normal text-white max-w-xs mb-6">Sign-up now to receive pre sale access and 20% off
+                        merch.</h3>
+                    <a href="#" class="inline-block bg-brand-pink text-white font-bold py-3 px-10 rounded-full text-base shadow-lg hover:bg-brand-pink-dark transition-colors">
+                        Subscribe
+                    </a>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold uppercase text-gray-400 tracking-wider mb-4">Social</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Instagram</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">TikTok</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">X</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Facebook</a>
+                        </li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Pinterest</a>
+                        </li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Snapchat</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold uppercase text-gray-400 tracking-wider mb-4">Music</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Spotify</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Apple Music</a>
+                        </li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Soundcloud</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="my-12 border-gray-700">
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="col-span-2 lg:col-span-2">
+                    <p class="text-xs text-gray-400 mb-2">Powered By</p>
+                    <img src="images/TNL.png" alt="TNL Logo" class="h-6 mb-6">
+                    <p class="text-xs text-gray-400">&copy; 2017 - 2025 Ushuaïa Entertainment, SL All rights reserved
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold uppercase text-gray-400 tracking-wider mb-4">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Terms and
+                                Conditions</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Protection of
+                                Personal Data</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Cookies
+                                Policy</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Cookie
+                                Settings</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Privacy
+                                Policy</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Refund
+                                Policy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold uppercase text-gray-400 tracking-wider mb-4">Community</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">FAQs /
+                                Contact</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">About</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">VIP Tables</a>
+                        </li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">VIP Info: +34
+                                971 129 418</a></li>
+                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Store</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script>
+     document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. Instagram Gallery Video Logic ---
+    
+    // सभी वीडियो को रैंडम चलाने के लिए सेलेक्ट करें
+    const videos = document.querySelectorAll('#insta-gallery-grid .gallery-video');
+    
+    // सभी पैरेंट आइटम को हॉवर के लिए सेलेक्ट करें
+    const videoItems = document.querySelectorAll('#insta-gallery-grid .insta-video-item');
+
+    if (videos.length === 0 || videoItems.length === 0) {
+        console.warn("Insta gallery videos or items not found.");
+        return;
+    }
+
+    let currentVideo = null;
+    let randomPlayTimeout = null;
+    let isUserHovering = false;
+
+    // --- रैंडम वीडियो चलाने का फंक्शन ---
+    function playRandomVideo() {
+        if (isUserHovering) {
+            randomPlayTimeout = setTimeout(playRandomVideo, 2000);
+            return;
+        }
+        if (currentVideo) {
+            currentVideo.pause();
+        }
+        const randomIndex = Math.floor(Math.random() * videos.length);
+        currentVideo = videos[randomIndex];
+        
+        if (currentVideo) {
+            currentVideo.currentTime = 0;
+            currentVideo.play().catch(error => {
+                // console.warn("Random autoplay was prevented:", error);
+            });
+        }
+        randomPlayTimeout = setTimeout(playRandomVideo, 11000); // 11 सेकंड
+    }
+
+    // --- हर वीडियो आइटम पर लॉजिक लगाएँ ---
+    videoItems.forEach(item => {
+        const video = item.querySelector('.gallery-video');
+        const playButton = item.querySelector('.play-icon-wrapper');
+
+        if (!video || !playButton) return; // अगर HTML सही नहीं है तो छोड़ दें
+
+        // === 1. पॉज/प्ले बटन का लॉजिक ===
+        video.addEventListener('play', () => {
+            playButton.style.display = 'none';
+        });
+        video.addEventListener('pause', () => {
+            playButton.style.display = 'flex';
+        });
+        // === लॉजिक खत्म ===
+
+        // === 2. हॉवर लॉजिक (पैरेंट 'item' पर) ===
+        item.addEventListener('mouseenter', () => {
+            isUserHovering = true;
+            clearTimeout(randomPlayTimeout);
+            
+            // अगर कोई दूसरा रैंडम वीडियो चल रहा है, तो उसे रोको
+            if (currentVideo && currentVideo !== video) {
+                currentVideo.pause();
+            }
+            
+            currentVideo = video; // इस वीडियो को 'current' बनाओ
+            video.currentTime = 0;
+            video.play().catch(error => console.warn("Hover play failed", error));
+        });
+
+        // === 3. माउस हटाने का लॉजिक (पैरेंट 'item' पर) ===
+        item.addEventListener('mouseleave', () => {
+            isUserHovering = false;
+            video.pause();
+            currentVideo = null; // 'current' वीडियो को क्लियर करो
+            clearTimeout(randomPlayTimeout);
+            playRandomVideo(); // रैंडम प्ले वापस शुरू करो
+        });
+        // === लॉजिक खत्म ===
+    });
+
+    // पेज लोड होने पर रैंडम प्ले शुरू करो
+    playRandomVideo();
+
+
+
+
+            // --- 2. Swiper.js & 3D Tilt Initialization ---
+            const swiper = new Swiper('.swiper', {
+                loop: true,
+                autoplay: {
+                    delay: 25000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                keyboard: {
+                    enabled: true,
+                },
+            });
+
+            const card = document.querySelector('.hero-card');
+            const container = document.querySelector('.hero-section');
+            if (card && container) {
+                const tiltIntensity = 5;
+                container.addEventListener('mousemove', (e) => {
+                    const rect = container.getBoundingClientRect();
+                    const mouseX = e.clientX - rect.left - rect.width / 2;
+                    const mouseY = e.clientY - rect.top - rect.height / 2;
+                    const rotateY = (mouseX / (rect.width / 2)) * tiltIntensity;
+                    const rotateX = (-mouseY / (rect.height / 2)) * tiltIntensity;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1) translate(-50%, -55%)`;
+                    card.style.transition = 'transform 0.4s ease-out';
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1) translate(-50%, -55%)';
+                    card.style.transition = 'transform 0.5s ease-in-out';
+                });
+            }
+
+            // --- 3. Horizontal Carousel Setup Function ---
+            function setupCarousel(containerId, dotsId, itemClass) {
+                const container = document.getElementById(containerId);
+                const dotsContainer = document.getElementById(dotsId);
+
+                if (!container) {
+                    return;
+                }
+                if (dotsContainer) {
+                    const items = container.querySelectorAll(itemClass);
+                    if (items.length === 0) return;
+
+                    dotsContainer.innerHTML = '';
+                    items.forEach((_, index) => {
+                        const dot = document.createElement('button');
+                        dot.setAttribute('aria-label', `Go to item ${index + 1}`);
+                        dot.className = 'w-2 h-2 rounded-full bg-neutral-600 transition-colors duration-300';
+
+                        if (index === 0) {
+                            dot.classList.remove('bg-neutral-600');
+                            dot.classList.add('bg-white');
+                        }
+
+                        dot.addEventListener('click', () => {
+                            items[index].scrollIntoView({
+                                behavior: 'smooth',
+                                inline: 'center',
+                                block: 'nearest'
+                            });
+                        });
+                        dotsContainer.appendChild(dot);
+                    });
+
+                    const dots = dotsContainer.querySelectorAll('button');
+
+                    container.addEventListener('scroll', () => {
+                        let activeIndex = 0;
+                        let minDistance = Infinity;
+                        const containerCenter = container.scrollLeft + container.clientWidth / 2;
+                        const itemsForDots = container.querySelectorAll(itemClass);
+
+                        itemsForDots.forEach((item, index) => {
+                            const itemCenter = item.offsetLeft + item.clientWidth / 2;
+                            const distance = Math.abs(itemCenter - containerCenter);
+                            if (distance < minDistance) {
+                                minDistance = distance;
+                                activeIndex = index;
+                            }
+                        });
+
+                        dots.forEach((dot, index) => {
+                            if (index === activeIndex) {
+                                dot.classList.remove('bg-neutral-600');
+                                dot.classList.add('bg-white');
+                            } else {
+                                dot.classList.remove('bg-white');
+                                dot.classList.add('bg-neutral-600');
+                            }
+                        });
+                    }, {
+                        passive: true
+                    });
+                }
+            }
+
+            // --- 4. Drag-to-Scroll Setup Function ---
+            function setupDragToScroll(containerId) {
+                const slider = document.getElementById(containerId);
+                if (!slider) return;
+
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                const endDrag = () => {
+                    if (!isDown) return;
+                    isDown = false;
+                    slider.classList.remove('cursor-grabbing');
+                    slider.classList.add('cursor-grab');
+                    slider.style.scrollBehavior = 'smooth';
+                };
+
+                slider.addEventListener('mousedown', (e) => {
+                    if (e.target.closest('button') || e.target.closest('a')) {
+                        return;
+                    }
+                    isDown = true;
+                    slider.classList.add('cursor-grabbing');
+                    slider.classList.remove('cursor-grab');
+                    slider.style.scrollBehavior = 'auto';
+                    startX = e.pageX - slider.offsetLeft;
+                    scrollLeft = slider.scrollLeft;
+                });
+
+                slider.addEventListener('mouseleave', endDrag);
+                slider.addEventListener('mouseup', endDrag);
+
+                slider.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - slider.offsetLeft;
+                    const walk = (x - startX);
+                    slider.scrollLeft = scrollLeft - walk;
+                });
+            }
+
+            // --- 5. Initialize All Carousels ---
+            
+            // Initialize T-Shirt Slider
+            setupCarousel('slider-container', 'pagination-dots', '.slider-item');
+            setupDragToScroll('slider-container');
+
+            // Initialize Audio Slider
+            setupCarousel('audio-carousel-container', 'audio-pagination-dots', '.audio-carousel-item');
+            setupDragToScroll('audio-carousel-container');
+
+            // Initialize News Slider
+            setupCarousel('news-carousel-container', 'news-pagination-dots', '.news-carousel-item');
+            setupDragToScroll('news-carousel-container');
+
+        });
+    </script>
+</body>
+
+</html>
