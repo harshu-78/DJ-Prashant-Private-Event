@@ -12,7 +12,9 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
 
+   
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
@@ -108,6 +110,23 @@
         .testimonial-img:hover {
             filter: grayscale(0%);
         }
+
+          /* Container perspective for 3D effect */
+    #services-carousel-container {
+        perspective: 1200px; 
+    }
+    .smooth-transition {
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .is-dragging {
+        transition: none !important;
+        cursor: grabbing !important;
+    }
+    .services-carousel-card {
+        cursor: grab;
+        will-change: transform, opacity; 
+        backface-visibility: hidden; 
+    }
     </style>
 
     <script>
@@ -147,8 +166,8 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Home</a>
                     <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Team</a>
-                    <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Services</a>
-                    <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Gallery</a>
+                    <a href="Services.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Services</a>
+                    <a href="Gallery.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Gallery</a>
                     <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Testimonials</a>
                 </div>
                 </div>
@@ -166,6 +185,8 @@
                 </div>
             </nav>
     </header>
+
+        <!-- hero-section -->
     <section class="hero-section relative h-[120vh] w-full overflow-hidden bg-black">
         <div class="swiper h-full w-full">
             <div class="swiper-wrapper">
@@ -214,6 +235,8 @@
             </div>
         </div>
         </section>
+
+        <!-- testimonials-section -->
     <section class="testimonials-bg relative py-20 md:py-32">
         <div class="testimonials-content container mx-auto max-w-7xl px-4">
 
@@ -280,209 +303,240 @@
             </div>
             </div>
         </section>
-    <section class="w-full min-h-screen py-20 md:py-32 px-4 md:px-10 ">
-        <div class="max-w-3xl mx-auto text-left md:text-center">
-            <h1 class="text-6xl md:text-8xl font-extrabold text-white mb-12 md:mb-16 tracking-tight">
-                DJ PRASHANT
-            </h1>
-            <div class="about-text text-white leading-relaxed text-center max-w-3xl mx-auto">
-                <p class="text-justify font-medium">
-                    Officially the World's #1 Club, DJ PRASHANTis a 360 nightlife experience featuring the world's
-                    best DJs, incredible production, plus so much more. <br><br>
 
-                    Through the unifying power of the dancefloor, we connect the worlds of music, art, and fashion.
-                    <br><br>
+     
+      <!-- ABOUT SECTION -->
+    <section class="relative w-full min-h-screen flex flex-col justify-center py-20 overflow-hidden">
 
-                    DJ PRASHANT goes beyond the nightclub experience; it is a cultural epicentre where music
-                    and art bring people together to forge meaningful connections. <br><br>
-
-                    No matter where in the world you are from, once we are on the dancefloor, we become
-                    one. One movement. One tribe. One shared heartbeat. <br><br>
-
-                    As a multi-room venue, every element has been precision-engineered to deliver a new
-                    excellence in clubbing. <br><br>
-                </p>
+        <div class="absolute top-1/4 left-0 w-full opacity-5 transform -rotate-6 pointer-events-none select-none overflow-hidden">
+            <div class="whitespace-nowrap animate-[scroll_20s_linear_infinite] text-[15rem] font-black font-teko text-white leading-none">
+                DJ PRASHANT • KING OF CLUBS • THE LEGEND • DJ PRASHANT • KING OF CLUBS • THE LEGEND •
             </div>
-            <div class="mt-12 md:mt-16 flex justify-center">
-                <button class="bg-gradient-to-r from-rose-600 to-fuchsia-700 text-white font-semibold px-10 py-4 rounded-full text-sm uppercase tracking-wider shadow-lg transition-transform hover:bg-blue-700 hover:scale-105">
-                    Find Out More
-                </button>
-            </div>
-            </div>
-        </section>
-    <section class="services-section py-20 md:py-32">
-        <div class="container mx-auto max-w-7xl px-4">
+        </div>
 
-            <h2 class="text-center text-4xl font-bold mb-4 uppercase text-gray-800">
-                <span class="text-brand-pink">Services</span>
+        <div class="container mx-auto px-4 relative z-10">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 relative group perspective-1000">
+ 
+                    <div class="absolute -top-12 -right-12 z-20 hidden md:block">
+                        <div class="relative w-32 h-32 animate-[spin_10s_linear_infinite]">
+                            <svg class="w-full h-full" viewBox="0 0 100 100">
+                                <defs>
+                                    <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
+                                </defs>
+                                <text font-size="11" font-weight="bold" letter-spacing="2">
+                                    <textPath xlink:href="#circle" fill="#D946EF">
+                                        OFFICIALLY THE WORLD'S #1 CLUB •
+                                    </textPath>
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
+
+
+                    <div class="relative h-[500px] w-full bg-black overflow-hidden transform transition-transform duration-700 group-hover:rotate-2 border-2 border-white/10">
+
+                        <img src="images/DSC02755.jpg" alt="DJ Prashant Live" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                        <div class="absolute inset-0 bg-brand-pink/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                        <div class="absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-white/80"></div>
+                        <div class="absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-brand-pink"></div>
+                    </div>
+
+                    <div class="absolute top-4 left-4 w-full h-full border border-brand-pink/30 -z-10"></div>
+                </div>
+
+                <div class="lg:col-span-7 text-left lg:pl-12 relative">
+
+                    <div class="absolute -left-8 top-20 w-1 h-32 bg-gradient-to-b from-brand-pink to-transparent hidden lg:block"></div>
+
+                    <h4 class="text-brand-pink font-bold tracking-[0.4em] uppercase mb-4 flex items-center gap-4">
+                        <span class="w-12 h-[2px] bg-brand-pink"></span> Since 2010
+                    </h4>
+                    
+                    <h1 class="text-7xl md:text-9xl font-black font-teko text-white leading-[0.85] mb-8">
+                        BEYOND <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D946EF] to-white">NIGHTLIFE</span>
+                    </h1>
+
+                    <div class="space-y-6 text-lg text-gray-200 font-light leading-relaxed">
+                        <p>
+                            <strong class="text-white text-xl uppercase font-bold">DJ Prashant</strong> is not just an artist; he is a <span class="bg-white/10 px-1 italic">movement</span>. An architect of sound who transforms ordinary nights into explosive memories.
+                        </p>
+                        <p>
+                            Through the unifying power of the dancefloor, we connect the worlds of music, art, and fashion. DJ PRASHANT goes beyond the nightclub experience; it is a cultural epicentre where strangers become a tribe.
+                        </p>
+                        <p class="border-l-4 border-brand-pink pl-6 py-2 my-4 italic text-gray-300 text-xl font-teko tracking-wide">
+                            "One Beat. One Tribe. Infinite Hype."
+                        </p>
+                    </div>
+
+ 
+                    <div class="grid grid-cols-3 gap-6 mt-10 border-t border-white/10 pt-8">
+                        <div>
+                            <span class="block text-4xl font-bold font-teko text-white">500+</span>
+                            <span class="text-xs text-brand-pink uppercase tracking-widest">Events</span>
+                        </div>
+                        <div>
+                            <span class="block text-4xl font-bold font-teko text-white">10k+</span>
+                            <span class="text-xs text-brand-pink uppercase tracking-widest">Crowd</span>
+                        </div>
+                        <div>
+                            <span class="block text-4xl font-bold font-teko text-white">#01</span>
+                            <span class="text-xs text-brand-pink uppercase tracking-widest">Rating</span>
+                        </div>
+                    </div>
+
+ 
+                    <div class="mt-10">
+                        <button class="group relative px-8 py-3 bg-transparent border-2 border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 overflow-hidden">
+                            <span class="relative z-10 group-hover:translate-x-2 transition-transform duration-300 inline-block">Discover The Legacy</span>
+                            <div class="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+        <!-- Services Section -->
+<section class="services-section relative py-20 overflow-hidden h-[100vh] flex items-center justify-center bg-transparent">
+    
+  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none w-full flex justify-center items-center overflow-hidden">
+    
+    <h1 class="text-[15vw] font-black uppercase tracking-wider leading-none text-center whitespace-nowrap"
+        style="-webkit-text-stroke: 2px rgba(255, 255, 255, 0.3); color: transparent;">
+        Services
+    </h1>
+
+</div>
+
+    <div class="container mx-auto max-w-7xl px-4 flex flex-col items-center relative z-10">
+
+        <div class="mb-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold uppercase text-white drop-shadow-lg tracking-wide">
+                Our <span class="text-brand-pink">Services</span>
             </h2>
-            <div class="w-20 h-1 bg-brand-pink mx-auto mb-16"></div>
+            <div class="w-24 h-1.5 bg-brand-pink mx-auto mt-4 rounded-full shadow-[0_0_10px_rgba(236,72,153,0.8)]"></div>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="relative w-full h-[65vh] md:h-[75vh] flex flex-col items-center justify-center">
+            
+            <div id="services-carousel-container" class="relative w-full h-full">
 
-                <div class="group relative shadow-lg rounded-lg overflow-hidden">
-                    <img src="images/DJs.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
-                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
-                        <h3 class="text-2xl font-bold mb-3">DJs</h3>
-                        <p class="text-sm leading-relaxed mb-4">
-                            Want to leave your guests talking about your event for months? Desi Junction DJ’s will entertain your guests above and beyond your expectations. Our team of talented DJ’s will mix music live according to your likes and needs.
-                        </p>
-                        <a href="#" class="flex items-center text-sm font-semibold">
-                            Read More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
+                <div data-index="0" class="services-carousel-card absolute top-1/2 left-1/2 w-[85%] md:w-[380px] h-[55vh] md:h-[65vh] bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-200/20">
+                    <div class="h-full relative group">
+                        <img src="images/DJs.jpg" alt="DJs" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 w-full p-8 text-white">
+                            <h3 class="text-3xl font-bold mb-2 text-white drop-shadow-lg tracking-wide">DJs</h3>
+                            <p class="text-sm leading-relaxed mb-6 text-gray-200 line-clamp-3 font-light">
+                                Want to leave your guests talking? Desi Junction DJ’s will entertain your guests above and beyond expectations with live mixing.
+                            </p>
+                            <button onclick="window.location.href='Services.html'" class="px-6 py-2.5 bg-brand-pink text-white rounded-full text-sm font-bold hover:bg-pink-600 transition shadow-lg transform hover:-translate-y-1">Read More</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative shadow-lg rounded-lg overflow-hidden">
-                    <img src="images/MCs.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
-                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
-                        <h3 class="text-2xl font-bold mb-3">MCs</h3>
-                        <p class="text-sm leading-relaxed mb-4">
-                            From formal events to full blown parties, our professional, well spoken emcees are all you need to keep your guests entertained for the entire event. From the moment the doors open to the moment the party ends our emcees will liven up the crowd and keep the energy high!
-                        </p>
-                        <a href="#" class="flex items-center text-sm font-semibold">
-                            Read More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
+                <div data-index="1" class="services-carousel-card absolute top-1/2 left-1/2 w-[85%] md:w-[380px] h-[55vh] md:h-[65vh] bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-200/20">
+                    <div class="h-full relative group">
+                        <img src="images/MCs.jpg" alt="MCs" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 w-full p-8 text-white">
+                            <h3 class="text-3xl font-bold mb-2 text-white drop-shadow-lg tracking-wide">MCs</h3>
+                            <p class="text-sm leading-relaxed mb-6 text-gray-200 line-clamp-3 font-light">
+                                Our professional emcees keep your guests entertained from the moment the doors open until the party ends.
+                            </p>
+                            <button  onclick="window.location.href='Services.html'" class="px-6 py-2.5 bg-brand-pink text-white rounded-full text-sm font-bold hover:bg-pink-600 transition shadow-lg transform hover:-translate-y-1">Read More</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative shadow-lg rounded-lg overflow-hidden">
-                    <img src="images/Dhol players.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
-                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
-                        <h3 class="text-2xl font-bold mb-3">Dhol Players</h3>
-                        <p class="text-sm leading-relaxed mb-4">
-                            There is nothing that ties western weddings back to their roots like live dhol drumming. Our dhol players can turn even the most shy guests in to dancing machines. Our dholis are able to entertain nonstop with drumming like you have never heard before!
-                        </p>
-                        <a href="#" class="flex items-center text-sm font-semibold">
-                            Read More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
+                <div data-index="2" class="services-carousel-card absolute top-1/2 left-1/2 w-[85%] md:w-[380px] h-[55vh] md:h-[65vh] bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-200/20">
+                    <div class="h-full relative group">
+                        <img src="images/Dhol players.jpg" alt="Dhol Players" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 w-full p-8 text-white">
+                            <h3 class="text-3xl font-bold mb-2 text-white drop-shadow-lg tracking-wide">Dhol Players</h3>
+                            <p class="text-sm leading-relaxed mb-6 text-gray-200 line-clamp-3 font-light">
+                                Live dhol drumming turns even shy guests into dancing machines. Nonstop entertainment you've never heard before.
+                            </p>
+                            <button onclick="window.location.href='Services.html'" class="px-6 py-2.5 bg-brand-pink text-white rounded-full text-sm font-bold hover:bg-pink-600 transition shadow-lg transform hover:-translate-y-1">Read More</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative shadow-lg rounded-lg overflow-hidden">
-                    <img src="images/Premium sound package.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
-                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
-                        <h3 class="text-2xl font-bold mb-3">Premium Sound Packages</h3>
-                        <p class="text-sm leading-relaxed mb-4">
-                            At Desi Junction DJs, we always invest in the highest quality sound equipment. With a full fleet of RCF Line Array speakers, we make sure every guest can hear every word of every speech before turning your ballroom into a full blown club.
-                        </p>
-                        <a href="#" class="flex items-center text-sm font-semibold">
-                            Read More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
+                <div data-index="3" class="services-carousel-card absolute top-1/2 left-1/2 w-[85%] md:w-[380px] h-[55vh] md:h-[65vh] bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-200/20">
+                    <div class="h-full relative group">
+                        <img src="images/Premium sound package.jpg" alt="Premium Sound" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 w-full p-8 text-white">
+                            <h3 class="text-3xl font-bold mb-2 text-white drop-shadow-lg tracking-wide">Premium Sound</h3>
+                            <p class="text-sm leading-relaxed mb-6 text-gray-200 line-clamp-3 font-light">
+                                RCF Line Array speakers ensure every guest hears every word before we turn your ballroom into a full blown club.
+                            </p>
+                            <button onclick="window.location.href='Services.html'" class="px-6 py-2.5 bg-brand-pink text-white rounded-full text-sm font-bold hover:bg-pink-600 transition shadow-lg transform hover:-translate-y-1">Read More</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative shadow-lg rounded-lg overflow-hidden">
-                    <img src="images/Intelligent Lighting.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
-                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
-                        <h3 class="text-2xl font-bold mb-3">Intelligent Lighting</h3>
-                        <p class="text-sm leading-relaxed mb-4">
-                            Our intelligent lighting can be used in a variety of ways. We can add moving gobo effects around the room, spotlight certain areas of the room, or just utilize them to make your event feel like a Las Vegas Nightclub! Let us help make your dream a reality with our intelligent lighting!
-                        </p>
-                        <a href="#" class="flex items-center text-sm font-semibold">
-                            Read More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
+                <div data-index="4" class="services-carousel-card absolute top-1/2 left-1/2 w-[85%] md:w-[380px] h-[55vh] md:h-[65vh] bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-200/20">
+                    <div class="h-full relative group">
+                        <img src="images/Intelligent Lighting.jpg" alt="Intelligent Lighting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 w-full p-8 text-white">
+                            <h3 class="text-3xl font-bold mb-2 text-white drop-shadow-lg tracking-wide">Intelligent Lighting</h3>
+                            <p class="text-sm leading-relaxed mb-6 text-gray-200 line-clamp-3 font-light">
+                                From gobo effects to spotting areas, make your event feel like a Las Vegas Nightclub with our intelligent lighting.
+                            </p>
+                            <button onclick="window.location.href='Services.html'" class="px-6 py-2.5 bg-brand-pink text-white rounded-full text-sm font-bold hover:bg-pink-600 transition shadow-lg transform hover:-translate-y-1">Read More</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative shadow-lg rounded-lg overflow-hidden">
-                    <img src="images/Uplighting.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
-                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
-                        <h3 class="text-2xl font-bold mb-3"> Uplighting</h3>
-                        <p class="text-sm leading-relaxed mb-4">
-                            This is a must have! No matter which venue you have for your event, LED lighting will add a completely new look and feel. With our DMX lighting we are able to coordinate all uplights with a flick of a switch and change the color as needed.
-                        </p>
-                        <a href="#" class="flex items-center text-sm font-semibold">
-                            Read More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
+                 <div data-index="5" class="services-carousel-card absolute top-1/2 left-1/2 w-[85%] md:w-[380px] h-[55vh] md:h-[65vh] bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-200/20">
+                    <div class="h-full relative group">
+                        <img src="images/Uplighting.jpg" alt="Uplighting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 w-full p-8 text-white">
+                            <h3 class="text-3xl font-bold mb-2 text-white drop-shadow-lg tracking-wide">Uplighting</h3>
+                            <p class="text-sm leading-relaxed mb-6 text-gray-200 line-clamp-3 font-light">
+                                LED lighting adds a new look and feel. DMX lighting allows us to coordinate uplights with a flick of a switch.
+                            </p>
+                            <button onclick="window.location.href='Services.html'" class="px-6 py-2.5 bg-brand-pink text-white rounded-full text-sm font-bold hover:bg-pink-600 transition shadow-lg transform hover:-translate-y-1">Read More</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative shadow-lg rounded-lg overflow-hidden">
-                    <img src="images/On Site Technicians.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
-                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
-                        <h3 class="text-2xl font-bold mb-3"> On Site Technicians</h3>
-                        <p class="text-sm leading-relaxed mb-4">
-                            With the vast amount of professional grade equipment we set up, we need talented and experienced technicians to run the show. At Desi Junction DJs, we pride ourselves in being able to provide a concert level experience at your event!
-                        </p>
-                        <a href="#" class="flex items-center text-sm font-semibold">
-                            Read More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
+                 <div data-index="6" class="services-carousel-card absolute top-1/2 left-1/2 w-[85%] md:w-[380px] h-[55vh] md:h-[65vh] bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-200/20">
+                    <div class="h-full relative group">
+                        <img src="images/Sparkulars.jpg" alt="Sparkulars" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 w-full p-8 text-white">
+                            <h3 class="text-3xl font-bold mb-2 text-white drop-shadow-lg tracking-wide">Sparkulars</h3>
+                            <p class="text-sm leading-relaxed mb-6 text-gray-200 line-clamp-3 font-light">
+                                Cold Sparklers are great for entrances, first dances, and open dance floors! Ask about ceiling mounted sparkulars.
+                            </p>
+                            <button onclick="window.location.href='Services.html'" class="px-6 py-2.5 bg-brand-pink text-white rounded-full text-sm font-bold hover:bg-pink-600 transition shadow-lg transform hover:-translate-y-1">Read More</button>
+                        </div>
                     </div>
                 </div>
-
-                <div class="group relative shadow-lg rounded-lg overflow-hidden">
-                    <img src="images/Sparkulars.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
-                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
-                        <h3 class="text-2xl font-bold mb-3"> Sparkulars</h3>
-                        <p class="text-sm leading-relaxed mb-4">
-                            Sparkulars, or Cold Sparklers, are one of the newest innovations in special effects. These are great for entrances, first dances, and open dance floor! Ask us about our new ceiling mounted sparkulars!
-                        </p>
-                        <a href="#" class="flex items-center text-sm font-semibold">
-                            Read More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="group relative shadow-lg rounded-lg overflow-hidden">
-                    <img src="images/CO2.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
-                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
-                        <h3 class="text-2xl font-bold mb-3">CO2 Jets and Cannons</h3>
-                        <p class="text-sm leading-relaxed mb-4">
-                            CO2 Jets and Cannons can help add that festival or concert feel to your event! We offer CO2 as a cannon, jets on stage, or both. Whichever you select, you won't go wrong! Ask us about adding CO2 to your event!
-                        </p>
-                        <a href="#" class="flex items-center text-sm font-semibold">
-                            Read More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="group relative shadow-lg rounded-lg overflow-hidden">
-                    <img src="images/Dancing on clouds.jpg" alt="DJs" class="w-full h-[496px] object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
-                    <div class="absolute bottom-0 w-full p-6 bg-brand-pink text-white transition-transform duration-300 ease-in-out translate-y-10 group-hover:translate-y-0">
-                        <h3 class="text-2xl font-bold mb-3">Dancing on the Clouds</h3>
-                        <p class="text-sm leading-relaxed mb-4">
-                            Our professional dry ice machines create a thick, white fog that hugs the floor. This is used to create that dreamy Bollywood effect of dancing in the clouds! The fog stays low to the ground so your guests will still be able to see every step you both make!
-                        </p>
-                        <a href="#" class="flex items-center text-sm font-semibold">
-                            Read More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
             </div>
+
+            <div id="services-pagination-dots" class="flex justify-center space-x-3 mt-8 z-40 absolute bottom-2">
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+
+         
+        <!-- Cloth Section -->
     <div class="relative w-full z-10 overflow-hidden">
 
         <div class="text-center px-4 md:px-8">
@@ -613,6 +667,8 @@
         <div id="pagination-dots" class="flex justify-center items-center space-x-2 mt-8">
         </div>
         </div>
+
+        <!-- Music Section -->
     <div class="w-full overflow-hidden relative z-10 mt-24">
 
         <div class="text-center px-4 md:px-8">
@@ -733,6 +789,8 @@
             </a>
         </div>
         </div>
+
+        <!-- Instagram Gallery Section -->
     <section class="py-20 md:py-32">
         <div class="container mx-auto max-w-7xl px-4">
 
@@ -912,6 +970,8 @@
             </div>
             </div>
         </section>
+
+        <!-- Art Section -->
     <div class="w-full px-4 md:px-8 relative z-10">
         <div class="relative w-full max-w-7xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl">
             <img src="images/c2.jpg" alt="Immersive Art Gallery" class="w-full h-[450px] md:h-[650px] lg:h-[750px] object-cover">
@@ -925,6 +985,8 @@
             </div>
             </div>
         </div>
+
+        <!-- News Section -->
     <div class="w-full relative z-10 mt-16 overflow-hidden">
 
         <div class="text-center px-4 md:px-8">
@@ -1029,6 +1091,8 @@
             </a>
         </div>
         </div>
+
+        <!-- Footer Section -->
     <footer class="w-full text-gray-300 py-16 px-4 sm:px-8 lg:px-12">
         <div class="max-w-7xl mx-auto">
 
@@ -1107,6 +1171,177 @@
                 </div>
             </div>
         </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const s_CARDS = document.querySelectorAll('.services-carousel-card');
+    const s_DOTS_CONTAINER = document.getElementById('services-pagination-dots');
+    const CONTAINER = document.getElementById('services-carousel-container');
+
+    if (s_CARDS.length > 0 && s_DOTS_CONTAINER) {
+        const s_TOTAL_CARDS = s_CARDS.length;
+        let s_activeIndex = 0;
+        let s_isDragging = false;
+        let s_startX = 0;
+        let s_currentX = 0;
+        
+        // Physics Config
+        const s_SLIDE_THRESHOLD = 100; 
+        
+        // 1. Initialize Cards
+        function init() {
+            s_CARDS.forEach((card, index) => {
+                card.classList.add('smooth-transition');
+            });
+            updateServiceCardStyles();
+        }
+
+        // 2. Main Style Calculator with FAN EFFECT
+        function getStyleForIndex(index, dragOffset = 0) {
+            let offset = index - s_activeIndex;
+            if (offset > s_TOTAL_CARDS / 2) offset -= s_TOTAL_CARDS;
+            else if (offset < -s_TOTAL_CARDS / 2) offset += s_TOTAL_CARDS;
+
+            const absOffset = Math.abs(offset);
+            
+            let translateX = 0;
+            let rotateZ = 0;
+            let scale = 1;
+            let zIndex = 100 - absOffset;
+            let opacity = 1;
+            
+            if (index === s_activeIndex) {
+                // --- ACTIVE CARD ---
+                translateX = dragOffset;
+                rotateZ = dragOffset * 0.05; 
+                scale = 1;
+            } else {
+                // --- BACKGROUND CARDS (THE FAN EFFECT) ---
+                // Device detection for spread width
+                const isMobile = window.innerWidth < 768;
+                const spreadDistance = isMobile ? 40 : 80; // Desktop pe cards zyada failenge
+
+                // Logic: Offset * Spread. 
+                // e.g., Card +1 moves +80px, Card -1 moves -80px
+                translateX = (offset * spreadDistance) + (dragOffset * 0.2);
+                
+                // Slight rotation for style
+                rotateZ = Math.sign(offset) * (absOffset * 2); 
+                
+                // Scale down distant cards
+                scale = 1 - (0.1 * absOffset); 
+            }
+
+            // Depth Logic
+            let translateZ = -100 * absOffset; 
+            
+            // Brightness Logic (Darken distant cards)
+            let brightness = 1 - (absOffset * 0.2);
+
+            // Hide cards that are too far (optimization)
+            if (absOffset > 3) {
+                opacity = 0;
+                brightness = 0;
+            }
+
+            return {
+                transform: `
+                    translate3d(-50%, -50%, ${translateZ}px)
+                    translateX(${translateX}px)
+                    scale(${Math.max(scale, 0)})
+                    rotateZ(${rotateZ}deg)
+                `,
+                opacity: opacity,
+                zIndex: zIndex,
+                brightness: brightness
+            };
+        }
+
+        // 3. Apply Styles
+        function updateServiceCardStyles(dragOffset = 0) {
+            s_CARDS.forEach((card, index) => {
+                const style = getStyleForIndex(index, dragOffset);
+                
+                card.style.transform = style.transform;
+                card.style.opacity = style.opacity;
+                card.style.zIndex = style.zIndex;
+                card.style.filter = `brightness(${Math.max(style.brightness, 0.3)})`; // Minimum brightness 0.3
+                
+                card.style.pointerEvents = index === s_activeIndex ? 'auto' : 'none';
+            });
+            updateServiceDots();
+        }
+
+        // 4. Drag Logic
+        const startDrag = (clientX) => {
+            s_isDragging = true;
+            s_startX = clientX;
+            s_CARDS.forEach(c => {
+                c.classList.remove('smooth-transition');
+                c.classList.add('is-dragging');
+            });
+        };
+
+        const moveDrag = (clientX) => {
+            if (!s_isDragging) return;
+            s_currentX = clientX;
+            const diff = s_currentX - s_startX;
+            updateServiceCardStyles(diff);
+        };
+
+        const endDrag = () => {
+            if (!s_isDragging) return;
+            s_isDragging = false;
+            s_CARDS.forEach(c => {
+                c.classList.add('smooth-transition');
+                c.classList.remove('is-dragging');
+            });
+
+            const diff = s_currentX - s_startX;
+
+            if (Math.abs(diff) > s_SLIDE_THRESHOLD) {
+                if (diff > 0) s_activeIndex = (s_activeIndex - 1 + s_TOTAL_CARDS) % s_TOTAL_CARDS;
+                else s_activeIndex = (s_activeIndex + 1) % s_TOTAL_CARDS;
+            }
+            
+            updateServiceCardStyles(0);
+            s_startX = 0; s_currentX = 0;
+        };
+
+        // Event Listeners
+        s_CARDS.forEach(card => {
+            card.addEventListener('mousedown', (e) => { e.preventDefault(); startDrag(e.clientX); });
+            card.addEventListener('touchstart', (e) => { startDrag(e.touches[0].clientX); });
+        });
+
+        document.addEventListener('mousemove', (e) => moveDrag(e.clientX));
+        document.addEventListener('touchmove', (e) => moveDrag(e.touches[0].clientX));
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag);
+        
+        // Window resize listener to adjust spread
+        window.addEventListener('resize', () => updateServiceCardStyles(0));
+
+        // Dots
+        function updateServiceDots() {
+            s_DOTS_CONTAINER.innerHTML = '';
+            s_CARDS.forEach((_, index) => {
+                const dot = document.createElement('button');
+                // Active dot is Pink and Long, Inactive is Gray and small
+                dot.className = `h-2 rounded-full mx-1 transition-all duration-300 ${index === s_activeIndex ? 'bg-brand-pink w-8' : 'bg-gray-500 w-2'}`;
+                dot.addEventListener('click', () => {
+                    s_activeIndex = index;
+                    s_CARDS.forEach(c => c.classList.add('smooth-transition'));
+                    updateServiceCardStyles(0);
+                });
+                s_DOTS_CONTAINER.appendChild(dot);
+            });
+        }
+
+        init();
+    }
+});
+</script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- 1. Instagram Gallery Video Hover/Random Play ---

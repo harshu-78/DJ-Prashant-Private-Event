@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi Junction DJs - Experience the Hype</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Teko:wght@300;500;700&display=swap');
+   body {
+            font-family: 'Montserrat', sans-serif;
+            color: #f5f5f5;
+            background-color: #4A0000;
+            background-image: linear-gradient(135deg, #2a0000 0%, #800000 50%, #4A0000 100%);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        /* --- GLITCH TEXT EFFECT --- */
+        .glitch {
+            position: relative;
+            color: white;
+            font-family: 'Teko', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-1 5s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 #00fff9;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(30px, 9999px, 10px, 0); }
+            20% { clip: rect(80px, 9999px, 90px, 0); }
+            40% { clip: rect(10px, 9999px, 50px, 0); }
+            60% { clip: rect(60px, 9999px, 20px, 0); }
+            80% { clip: rect(40px, 9999px, 70px, 0); }
+            100% { clip: rect(90px, 9999px, 30px, 0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(10px, 9999px, 80px, 0); }
+            20% { clip: rect(70px, 9999px, 30px, 0); }
+            40% { clip: rect(20px, 9999px, 60px, 0); }
+            60% { clip: rect(50px, 9999px, 90px, 0); }
+            80% { clip: rect(90px, 9999px, 10px, 0); }
+            100% { clip: rect(30px, 9999px, 50px, 0); }
+        }
+
+       /* Update Marquee CSS in your <style> tag */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    bottom: -10px; /* Thoda niche khiska diya taaki gap na dikhe */
+    width: 100%;
+    background: #D946EF; 
+    color: white;
+    font-family: 'Teko', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem; /* Size badha diya */
+    text-transform: uppercase;
+    padding: 15px 0; /* Thodi moti patti */
+    z-index: 30;
+    transform: rotate(-2deg) scale(1.1); 
+    box-shadow: 0 0 30px rgba(217, 70, 239, 0.6); /* Glow effect badhaya */
+}
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+      /* --- USER'S CUSTOM ANIMATION (KEPT AS REQUESTED) --- */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            /* Increased Glow for "Tagda" effect */
+            box-shadow: 0 20px 50px -12px rgba(217, 70, 239, 0.6); 
+            border-color: #D946EF;
+            z-index: 10;
+        }
+
+        /* --- NEW TAGDA FEATURES --- */
+        
+        /* Big Watermark Number behind text */
+        .card-number {
+            position: absolute;
+            bottom: -20px;
+            right: 10px;
+            font-size: 8rem;
+            font-family: 'Teko', sans-serif;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            line-height: 1;
+            pointer-events: none;
+            transition: all 0.5s ease;
+            z-index: 0;
+        }
+
+        .service-card:hover .card-number {
+            color: rgba(217, 70, 239, 0.1); /* Glows Pink on Hover */
+            transform: translateY(-15px) scale(1.1);
+        }
+
+        /* Neon Button Style */
+        .neon-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        .neon-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background: #D946EF;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        .service-card:hover .neon-btn {
+            background: transparent;
+            color: #D946EF;
+            border-color: #D946EF;
+        }
+        .service-card:hover .neon-btn::before {
+            width: 100%;
+        }
+        .service-card:hover .neon-btn:hover {
+            color: white;
+        }
+
+        /* Image Shine Effect */
+        .img-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-25deg);
+            transition: 0.5s;
+        }
+        .service-card:hover .img-container::after {
+            left: 150%;
+            transition: 0.7s;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-pink': '#D946EF',
+                        'brand-pink-dark': '#C026D3',
+                    },
+                    fontFamily: {
+                        'teko': ['Teko', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <header class="fixed top-0 left-0 w-full bg-black z-50 transition-all duration-300">
+        <nav class="container mx-auto max-w-7xl flex items-start md:items-center justify-center md:justify-between p-4 md:p-6 relative">
+
+            <div class="hidden md:block">
+                <a href="#" class="text-white text-2xl font-bold">
+                    <img class="w-16 h-16" src="images/dj.png" alt="Logo">
+                </a>
+            </div>
+            <div>
+                <div class="md:hidden flex flex-col items-center">
+                    <a href="#" class="text-white text-2xl font-bold">
+                        <img class="w-20 h-20" src="images/dj.png" alt="Logo">
+                    </a>
+                    <div class="mt-2">
+                        <a href="#" class="bg-brand-pink text-white uppercase font-bold px-4 py-2 rounded-md text-xs hover:bg-brand-pink-dark transition-colors">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Home</a>
+                    <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Team</a>
+                    <a href="Services.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Services</a>
+                    <a href="Gallery.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Gallery</a>
+                    <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Testimonials</a>
+                </div>
+                </div>
+            <div>
+                <div class="md:hidden absolute top-4 right-4">
+                    <button class="text-white text-3xl">
+                        &#9776;
+                    </button>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#" class="bg-brand-pink text-white uppercase font-bold px-6 py-3 rounded-md text-sm hover:bg-brand-pink-dark transition-colors">
+                        Contact Us
+                    </a>
+                </div>
+                </div>
+            </nav>
+    </header>
+
+   <section class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
+        
+        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover opacity-50">
+            <source src="videos/h12.mp4" type="video/mp4">
+        </video>
+
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-10"></div>
+
+        <div class="relative z-20 text-center px-4 pb-12">
+            <h3 class="text-brand-pink font-bold tracking-[0.5em] uppercase mb-4 text-sm md:text-base animate-pulse drop-shadow-lg">
+                Premium Event Production
+            </h3>
+            
+            <h1 class="text-7xl md:text-9xl font-black uppercase leading-none mb-6 font-teko glitch drop-shadow-2xl" data-text="WE CREATE HYPE">
+                WE CREATE HYPE
+            </h1>
+            
+            <p class="text-gray-200 text-lg md:text-2xl max-w-2xl mx-auto font-light mb-10 drop-shadow-md">
+                Elevating your events with world-class DJs, Lighting, and Special Effects.
+            </p>
+
+            <div class="flex justify-center gap-4">
+                <a href="#services-list" class="group relative px-10 py-4 bg-transparent border border-brand-pink text-white font-bold uppercase tracking-wider overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(217,70,239,0.6)]">
+                    <span class="absolute inset-0 w-full h-full bg-brand-pink transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+                    <span class="relative group-hover:text-white transition-colors duration-300">Explore Services</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="marquee-container" style="width: 120%; left: -10%;">
+            <div class="marquee-content">
+                WEDDINGS &nbsp;&nbsp;•&nbsp;&nbsp; CORPORATE EVENTS &nbsp;&nbsp;•&nbsp;&nbsp; PARTIES &nbsp;&nbsp;•&nbsp;&nbsp; CONCERTS &nbsp;&nbsp;•&nbsp;&nbsp; DJS &nbsp;&nbsp;•&nbsp;&nbsp; LIGHTING &nbsp;&nbsp;•&nbsp;&nbsp; SPECIAL FX &nbsp;&nbsp;•&nbsp;&nbsp; WEDDINGS &nbsp;&nbsp;•&nbsp;&nbsp; CORPORATE EVENTS &nbsp;&nbsp;•&nbsp;&nbsp; PARTIES &nbsp;&nbsp;•&nbsp;&nbsp; CONCERTS &nbsp;&nbsp;•&nbsp;&nbsp; DJS &nbsp;&nbsp;•&nbsp;&nbsp; LIGHTING &nbsp;&nbsp;•&nbsp;&nbsp; SPECIAL FX
+            </div>
+        </div>
+    </section>
+
+
+   <!-- Services Section -->
+    <section class="services-section py-24 bg-[#050505] relative overflow-hidden">
+        
+        <!-- Dynamic Background Pattern -->
+        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#333 1px, transparent 1px); background-size: 40px 40px;"></div>
+        
+        <!-- Glow Orbs -->
+        <div class="absolute top-20 left-0 w-96 h-96 bg-brand-pink/10 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="absolute bottom-20 right-0 w-96 h-96 bg-purple-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="container mx-auto max-w-7xl px-4 relative z-10">
+
+            <!-- Heading Section -->
+            <div class="text-center mb-24">
+                <h2 class="text-6xl md:text-8xl font-black font-teko uppercase text-white mb-2 tracking-wider drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                    Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-pink to-purple-500 drop-shadow-[0_0_15px_rgba(217,70,239,0.8)]">Services</span>
+                </h2>
+                <div class="flex items-center justify-center gap-2 opacity-70">
+                    <div class="h-[1px] w-12 bg-brand-pink"></div>
+                    <i class="fas fa-star text-brand-pink text-xs"></i>
+                    <div class="h-[1px] w-12 bg-brand-pink"></div>
+                </div>
+            </div>
+
+            <!-- 10 Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- 1. DJs -->
+                <div class="service-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="card-number">01</div>
+                    <div class="h-72 overflow-hidden relative img-container">
+                        <img src="images/DJs.jpg" alt="DJs" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-12">
+                        <h3 class="text-4xl font-teko font-bold text-white mb-3 uppercase tracking-wide drop-shadow-md group-hover:text-brand-pink transition-colors">DJs</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1 border-l-2 border-gray-700 pl-4 group-hover:border-brand-pink transition-colors">
+                            Want to leave your guests talking about your event for months? Desi Junction DJ’s will entertain your guests above and beyond your expectations. Our team of talented DJ’s will mix music live according to your likes and needs.
+                        </p>
+                        <a href="#" class="neon-btn w-full text-center border border-gray-600 text-white py-3 uppercase font-bold text-sm tracking-widest rounded-lg group-hover:border-brand-pink">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. MCs -->
+                <div class="service-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="card-number">02</div>
+                    <div class="h-72 overflow-hidden relative img-container">
+                        <img src="images/MCs.jpg" alt="MCs" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-12">
+                        <h3 class="text-4xl font-teko font-bold text-white mb-3 uppercase tracking-wide drop-shadow-md group-hover:text-brand-pink transition-colors">MCs</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1 border-l-2 border-gray-700 pl-4 group-hover:border-brand-pink transition-colors">
+                            From formal events to full blown parties, our professional, well spoken emcees are all you need to keep your guests entertained for the entire event. From the moment the doors open to the moment the party ends our emcees will liven up the crowd and keep the energy high!
+                        </p>
+                        <a href="#" class="neon-btn w-full text-center border border-gray-600 text-white py-3 uppercase font-bold text-sm tracking-widest rounded-lg group-hover:border-brand-pink">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. Dhol Players -->
+                <div class="service-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="card-number">03</div>
+                    <div class="h-72 overflow-hidden relative img-container">
+                        <img src="images/Dhol players.jpg" alt="Dhol Players" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-12">
+                        <h3 class="text-4xl font-teko font-bold text-white mb-3 uppercase tracking-wide drop-shadow-md group-hover:text-brand-pink transition-colors">Dhol Players</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1 border-l-2 border-gray-700 pl-4 group-hover:border-brand-pink transition-colors">
+                            There is nothing that ties western weddings back to their roots like live dhol drumming. Our dhol players can turn even the most shy guests in to dancing machines. Our dholis are able to entertain nonstop with drumming like you have never heard before!
+                        </p>
+                        <a href="#" class="neon-btn w-full text-center border border-gray-600 text-white py-3 uppercase font-bold text-sm tracking-widest rounded-lg group-hover:border-brand-pink">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. Premium Sound Packages -->
+                <div class="service-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="card-number">04</div>
+                    <div class="h-72 overflow-hidden relative img-container">
+                        <img src="images/Premium sound package.jpg" alt="Sound Packages" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-12">
+                        <h3 class="text-4xl font-teko font-bold text-white mb-3 uppercase tracking-wide drop-shadow-md group-hover:text-brand-pink transition-colors">Premium Sound Packages</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1 border-l-2 border-gray-700 pl-4 group-hover:border-brand-pink transition-colors">
+                            At Desi Junction DJs, we always invest in the highest quality sound equipment. With a full fleet of RCF Line Array speakers, we make sure every guest can hear every word of every speech before turning your ballroom into a full blown club.
+                        </p>
+                        <a href="#" class="neon-btn w-full text-center border border-gray-600 text-white py-3 uppercase font-bold text-sm tracking-widest rounded-lg group-hover:border-brand-pink">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. Intelligent Lighting -->
+                <div class="service-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="card-number">05</div>
+                    <div class="h-72 overflow-hidden relative img-container">
+                        <img src="images/Intelligent Lighting.jpg" alt="Intelligent Lighting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-12">
+                        <h3 class="text-4xl font-teko font-bold text-white mb-3 uppercase tracking-wide drop-shadow-md group-hover:text-brand-pink transition-colors">Intelligent Lighting</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1 border-l-2 border-gray-700 pl-4 group-hover:border-brand-pink transition-colors">
+                            Our intelligent lighting can be used in a variety of ways. We can add moving gobo effects around the room, spotlight certain areas of the room, or just utilize them to make your event feel like a Las Vegas Nightclub! Let us help make your dream a reality with our intelligent lighting!
+                        </p>
+                        <a href="#" class="neon-btn w-full text-center border border-gray-600 text-white py-3 uppercase font-bold text-sm tracking-widest rounded-lg group-hover:border-brand-pink">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 6. Uplighting -->
+                <div class="service-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="card-number">06</div>
+                    <div class="h-72 overflow-hidden relative img-container">
+                        <img src="images/Uplighting.jpg" alt="Uplighting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-12">
+                        <h3 class="text-4xl font-teko font-bold text-white mb-3 uppercase tracking-wide drop-shadow-md group-hover:text-brand-pink transition-colors">Uplighting</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1 border-l-2 border-gray-700 pl-4 group-hover:border-brand-pink transition-colors">
+                            This is a must have! No matter which venue you have for your event, LED lighting will add a completely new look and feel. With our DMX lighting we are able to coordinate all uplights with a flick of a switch and change the color as needed.
+                        </p>
+                        <a href="#" class="neon-btn w-full text-center border border-gray-600 text-white py-3 uppercase font-bold text-sm tracking-widest rounded-lg group-hover:border-brand-pink">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 7. On Site Technicians -->
+                <div class="service-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="card-number">07</div>
+                    <div class="h-72 overflow-hidden relative img-container">
+                        <img src="images/On Site Technicians.jpg" alt="Technicians" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-12">
+                        <h3 class="text-4xl font-teko font-bold text-white mb-3 uppercase tracking-wide drop-shadow-md group-hover:text-brand-pink transition-colors">On Site Technicians</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1 border-l-2 border-gray-700 pl-4 group-hover:border-brand-pink transition-colors">
+                            With the vast amount of professional grade equipment we set up, we need talented and experienced technicians to run the show. At Desi Junction DJs, we pride ourselves in being able to provide a concert level experience at your event!
+                        </p>
+                        <a href="#" class="neon-btn w-full text-center border border-gray-600 text-white py-3 uppercase font-bold text-sm tracking-widest rounded-lg group-hover:border-brand-pink">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 8. Sparkulars -->
+                <div class="service-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="card-number">08</div>
+                    <div class="h-72 overflow-hidden relative img-container">
+                        <img src="images/Sparkulars.jpg" alt="Sparkulars" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-12">
+                        <h3 class="text-4xl font-teko font-bold text-white mb-3 uppercase tracking-wide drop-shadow-md group-hover:text-brand-pink transition-colors">Sparkulars</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1 border-l-2 border-gray-700 pl-4 group-hover:border-brand-pink transition-colors">
+                            Sparkulars, or Cold Sparklers, are one of the newest innovations in special effects. These are great for entrances, first dances, and open dance floor! Ask us about our new ceiling mounted sparkulars!
+                        </p>
+                        <a href="#" class="neon-btn w-full text-center border border-gray-600 text-white py-3 uppercase font-bold text-sm tracking-widest rounded-lg group-hover:border-brand-pink">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 9. CO2 Jets and Cannons -->
+                <div class="service-card rounded-2xl overflow-hidden flex flex-col group">
+                    <div class="card-number">09</div>
+                    <div class="h-72 overflow-hidden relative img-container">
+                        <img src="images/CO2.jpg" alt="CO2 Jets" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-12">
+                        <h3 class="text-4xl font-teko font-bold text-white mb-3 uppercase tracking-wide drop-shadow-md group-hover:text-brand-pink transition-colors">CO2 Jets and Cannons</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1 border-l-2 border-gray-700 pl-4 group-hover:border-brand-pink transition-colors">
+                            CO2 Jets and Cannons can help add that festival or concert feel to your event! We offer CO2 as a cannon, jets on stage, or both. Whichever you select, you won't go wrong! Ask us about adding CO2 to your event!
+                        </p>
+                        <a href="#" class="neon-btn w-full text-center border border-gray-600 text-white py-3 uppercase font-bold text-sm tracking-widest rounded-lg group-hover:border-brand-pink">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 10. Dancing on the Clouds -->
+                <div class="service-card rounded-2xl overflow-hidden flex flex-col group md:col-span-3 lg:col-span-1 lg:col-start-2">
+                    <div class="card-number">10</div>
+                    <div class="h-72 overflow-hidden relative img-container">
+                        <img src="images/Dancing on clouds.jpg" alt="Clouds" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative z-10 -mt-12">
+                        <h3 class="text-4xl font-teko font-bold text-white mb-3 uppercase tracking-wide drop-shadow-md group-hover:text-brand-pink transition-colors">Dancing on the Clouds</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1 border-l-2 border-gray-700 pl-4 group-hover:border-brand-pink transition-colors">
+                            Our professional dry ice machines create a thick, white fog that hugs the floor. This is used to create that dreamy Bollywood effect of dancing in the clouds! The fog stays low to the ground so your guests will still be able to see every step you both make!
+                        </p>
+                        <a href="#" class="neon-btn w-full text-center border border-gray-600 text-white py-3 uppercase font-bold text-sm tracking-widest rounded-lg group-hover:border-brand-pink">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

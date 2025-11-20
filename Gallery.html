@@ -1,1042 +1,579 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Vasudha Sharma Productions</title>
+    <title>Royal Gallery - DJ Prashant</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDJ8fGNvbmNlcnQlMjBibHVyfGVufDB8fHx8MTczMTcxMTk0OHww&ixlib=rb-4.0.3&q=80&w=1920');
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-            background-color: #0a0a0f;
-            background-size: cover;
-            background-position: center;
+    <style>
+        /* Importing Luxury/Royal Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Great+Vibes&display=swap');
+
+        /* --- BASE VARIABLES --- */
+        :root {
+            --gold-light: #fcf6ba;
+            --gold-base: #bf953f;
+            --gold-dark: #8a6e2f;
+            --maroon-bg: #4A0000;
+        }
+
+        /* --- BASE STYLES --- */
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--gold-light);
+            background-color: var(--maroon-bg);
+            background-image: linear-gradient(135deg, #2a0000 0%, #4a0000 50%, #1a0000 100%);
             background-attachment: fixed;
+            background-size: cover;
+            overflow-x: hidden;
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 90;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--gold-base), var(--gold-light), var(--gold-dark));
+            border-radius: 2px;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        .font-royal { font-family: 'Cinzel', serif; }
+        .font-script { font-family: 'Great Vibes', cursive; }
+        
+        .gold-gradient-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #1a0000;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.8s ease-out, visibility 0.8s;
+        }
+        .loader-logo {
+            animation: pulseGold 2s infinite;
+        }
+        .loader-line {
+            width: 0;
+            height: 2px;
+            background: var(--gold-base);
+            margin-top: 20px;
+            animation: expandLine 1.5s ease-out forwards;
+        }
+
+        /* --- GALLERY CARD DESIGN --- */
+        .gallery-frame {
+            position: relative;
+            padding: 12px;
+            background: rgba(20, 0, 0, 0.4);
+            border: 1px solid rgba(191, 149, 63, 0.2);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.7);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Inner Border for "Frame" look */
+        .gallery-frame::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px solid rgba(191, 149, 63, 0.1);
+            z-index: 1;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        /* Hover Effects */
+        .gallery-frame:hover {
+            transform: translateY(-10px) scale(1.01);
+            border-color: var(--gold-base);
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8), 0 0 20px rgba(191, 149, 63, 0.2);
+        }
+
+        .gallery-frame:hover::before {
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-color: var(--gold-light);
+        }
+
+        .img-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease, filter 0.5s ease;
+            filter: sepia(20%) contrast(1.1) brightness(0.9);
+        }
+
+        .gallery-frame:hover .gallery-img {
+            transform: scale(1.1);
+            filter: sepia(0%) contrast(1.1) brightness(1.1);
+        }
+
+        /* Curtain Reveal Animation */
+        .reveal-curtain {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, var(--gold-base), var(--gold-light), var(--gold-dark));
+            transform: translateX(0);
+            z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        .revealed .reveal-curtain {
+            transform: translateX(100%);
+        }
+
+        /* Ornamental Divider SVG */
+        .ornament-divider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 4rem 0;
+            opacity: 0.6;
+        }
+        .ornament-line {
+            height: 1px;
+            width: 100px;
+            background: linear-gradient(to right, transparent, var(--gold-base), transparent);
+        }
+
+        /* Lightbox */
+        #lightbox {
+            backdrop-filter: blur(20px);
+            background: rgba(10, 0, 0, 0.95);
+        }
+        
+        /* Floating Dust Animation */
+        @keyframes floatDust {
+            0% { transform: translateY(0px); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        .dust-particle {
+            position: absolute;
+            background: var(--gold-light);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: floatDust 10s infinite linear;
+        }
+
+        /* Keyframes */
+        @keyframes pulseGold {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); text-shadow: 0 0 20px var(--gold-base); }
+        }
+        @keyframes expandLine {
+            to { width: 200px; }
         }
     </style>
 </head>
 
-<body class="text-gray-300 font-sans">
+<body>
 
-    <main class="container mx-auto px-6 py-16">
+    <!-- 1. PRELOADER -->
+    <div id="preloader">
+        <div class="font-royal text-4xl text-white tracking-[0.5em] loader-logo">
+            DJ <span style="color: var(--gold-base);">PRASHANT</span>
+        </div>
+        <div class="loader-line"></div>
+        <p class="mt-4 font-script text-2xl text-[#bf953f]">Loading Elegance...</p>
+    </div>
 
-        <h1 class="text-7xl font-bold text-center text-white mb-16 uppercase tracking-widest"
-            style="text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);">
-            Gallery
-        </h1>
+    <!-- 2. GRAIN OVERLAY -->
+    <div class="grain-overlay"></div>
 
-        <section class="mb-16 bg-white/5 backdrop-blur-md rounded-2xl shadow-xl p-6 md:p-10">
+    <!-- 3. GOLD DUST PARTICLES (Generated by JS) -->
+    <div id="dust-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-extrabold text-white mb-2 uppercase tracking-wide">
-                    I AM HOME LIVE IN SEATTLE
-                </h2>
-                <p class="text-lg text-gray-400">A night to remember, captured forever.</p>
+    <!-- NAVBAR -->
+    <nav class="w-full py-6 px-8 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent fixed top-0 z-50 transition-all duration-500" id="navbar">
+        <a href="index.html" class="text-2xl md:text-3xl font-bold font-royal tracking-widest text-white group">
+            <img src="images/dj.png" class="h-10 inline-block mr-2 opacity-90 group-hover:opacity-100 transition-opacity" alt="Logo">
+            DJ <span class="text-[#bf953f] group-hover:text-white transition-colors">PRASHANT</span>
+        </a>
+        
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="index.html" class="text-xs font-royal font-bold tracking-[0.2em] text-[#bf953f] hover:text-white transition-colors relative group">
+                HOME
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#" class="text-xs font-royal font-bold tracking-[0.2em] text-white border-b border-[#bf953f]">
+                GALLERY
+            </a>
+            <a href="#" class="px-6 py-2 border border-[#bf953f] text-[#bf953f] text-xs font-royal tracking-widest hover:bg-[#bf953f] hover:text-[#1a0000] transition-all duration-300">
+                BOOK NOW
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-40 pb-20 relative z-10">
+
+        <!-- HEADER SECTION -->
+        <div class="text-center mb-32 reveal-trigger">
+            <p class="font-royal text-xs md:text-sm text-[#bf953f] tracking-[0.6em] mb-6 opacity-0 translate-y-10 transition-all duration-1000 delay-300 fade-in-elem">
+                EST. 2010 • EXCLUSIVE EVENTS
+            </p>
+            <h1 class="text-6xl md:text-9xl font-royal font-bold gold-gradient-text mb-8 leading-tight opacity-0 translate-y-10 transition-all duration-1000 fade-in-elem">
+                The Royal Gallery
+            </h1>
+            <div class="flex justify-center items-center opacity-0 translate-y-10 transition-all duration-1000 delay-500 fade-in-elem">
+                <span class="h-[1px] w-16 bg-gradient-to-r from-transparent to-[#bf953f]"></span>
+                <i class="fas fa-crown text-[#bf953f] mx-4 text-xl"></i>
+                <span class="h-[1px] w-16 bg-gradient-to-l from-transparent to-[#bf953f]"></span>
+            </div>
+            <p class="mt-8 text-gray-300 font-script text-3xl opacity-80 max-w-2xl mx-auto opacity-0 translate-y-10 transition-all duration-1000 delay-700 fade-in-elem">
+                "Capturing the fleeting moments of grandeur and emotion."
+            </p>
+        </div>
+
+        <!-- ORNAMENTAL DIVIDER -->
+        <div class="ornament-divider">
+            <div class="ornament-line"></div>
+            <img src="https://img.icons8.com/ios/50/bf953f/fancy-fleur-de-lis.png" class="w-8 h-8 mx-4 opacity-80" alt="ornament">
+            <div class="ornament-line"></div>
+        </div>
+
+        <!-- SECTION 1: WEDDINGS (Masonry) -->
+        <section class="mb-32">
+            <div class="flex flex-col items-center justify-center mb-20">
+                <h3 class="text-5xl font-royal text-white uppercase tracking-widest mb-2">The Vows</h3>
+                <p class="font-script text-[#bf953f] text-2xl">Eternal Love Stories</p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m1.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m1.jpg" alt="Gallery image 1"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-12">
+                
+                <!-- Card 1 (Tall) -->
+                <div class="gallery-frame md:row-span-2 h-[600px]" onclick="openLightbox(0)">
+                    <div class="img-wrapper">
+                        <div class="reveal-curtain"></div>
+                        <img src="images/m1.jpg" class="gallery-img" alt="Wedding Portrait">
+                    </div>
+                    <div class="absolute bottom-6 left-6 text-left z-20">
+                        <p class="font-royal text-xs text-[#bf953f] tracking-widest mb-1">WEDDING</p>
+                        <h4 class="font-royal text-xl text-white">The Royal Portrait</h4>
                     </div>
                 </div>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m2.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m2.jpg" alt="Gallery image 2"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
+                <!-- Card 2 (Wide) -->
+                <div class="gallery-frame h-72" onclick="openLightbox(1)">
+                    <div class="img-wrapper">
+                        <div class="reveal-curtain"></div>
+                        <img src="images/m2.jpg" class="gallery-img" alt="Ceremony">
                     </div>
                 </div>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m3.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m3.jpg" alt="Gallery image 3"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
+                <!-- Card 3 (Wide) -->
+                <div class="gallery-frame h-72" onclick="openLightbox(2)">
+                    <div class="img-wrapper">
+                        <div class="reveal-curtain"></div>
+                        <img src="images/m3.jpg" class="gallery-img" alt="Details">
                     </div>
                 </div>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m4.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m4.jpg" alt="Gallery image 4"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
+                <!-- Card 4 (Tall) -->
+                <div class="gallery-frame md:row-span-2 h-[600px]" onclick="openLightbox(3)">
+                    <div class="img-wrapper">
+                        <div class="reveal-curtain"></div>
+                        <img src="images/m4.jpg" class="gallery-img" alt="Couple">
+                    </div>
+                    <div class="absolute bottom-6 left-6 text-left z-20">
+                        <p class="font-royal text-xs text-[#bf953f] tracking-widest mb-1">MOMENTS</p>
+                        <h4 class="font-royal text-xl text-white">Timeless Love</h4>
                     </div>
                 </div>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m5.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m5.jpg" alt="Gallery image 5"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
+                <!-- Card 5 (Wide) -->
+                <div class="gallery-frame h-72" onclick="openLightbox(4)">
+                    <div class="img-wrapper">
+                        <div class="reveal-curtain"></div>
+                        <img src="images/m5.jpg" class="gallery-img" alt="Celebration">
                     </div>
                 </div>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m6.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m6.jpg" alt="Gallery image 6"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </section>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m7.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m7.jpg" alt="Gallery image 7"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+        <!-- ORNAMENTAL DIVIDER -->
+        <div class="ornament-divider">
+            <div class="ornament-line"></div>
+            <img src="https://img.icons8.com/ios/50/bf953f/fancy-fleur-de-lis.png" class="w-8 h-8 mx-4 opacity-80" alt="ornament">
+            <div class="ornament-line"></div>
+        </div>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m8.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m8.jpg" alt="Gallery image 8"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div> </section>
-        <section class="mb-16 bg-white/5 backdrop-blur-md rounded-2xl shadow-xl p-6 md:p-10">
-
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-extrabold text-white mb-2 uppercase tracking-wide">
-                    UNFORGETTABLE 90'S
-                </h2>
-                <p class="text-lg text-gray-400">Throwback to the golden era.</p>
+        <!-- SECTION 2: GRAND SOIREES (Alternate Grid) -->
+        <section class="mb-32">
+            <div class="flex flex-col items-center justify-center mb-20">
+                <h3 class="text-5xl font-royal text-white uppercase tracking-widest mb-2">Grand Soirées</h3>
+                <p class="font-script text-[#bf953f] text-2xl">Nights to Remember</p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m9.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m9.jpg" alt="Gallery image 9"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 px-4 md:px-20">
+                
+                <!-- Card 6 -->
+                <div class="gallery-frame h-96 group relative mt-0" onclick="openLightbox(5)">
+                    <div class="img-wrapper">
+                        <div class="reveal-curtain"></div>
+                        <img src="images/m6.jpg" class="gallery-img" alt="Party">
+                    </div>
+                    <!-- Floating Number -->
+                    <div class="absolute -top-10 -left-10 text-[8rem] font-royal font-bold text-white opacity-5 z-0 pointer-events-none group-hover:opacity-10 transition-opacity">01</div>
+                    <div class="absolute bottom-8 right-8 text-right">
+                        <h4 class="font-royal text-2xl text-white mb-1 group-hover:text-[#bf953f] transition-colors">The Ball</h4>
+                        <p class="font-serif italic text-gray-400 text-sm">Reception Hall</p>
                     </div>
                 </div>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m10.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m10.jpg" alt="Gallery image 10"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
+                <!-- Card 7 (Offset) -->
+                <div class="gallery-frame h-96 group relative md:mt-24" onclick="openLightbox(6)">
+                    <div class="img-wrapper">
+                        <div class="reveal-curtain"></div>
+                        <img src="images/m7.jpg" class="gallery-img" alt="Cocktails">
+                    </div>
+                    <div class="absolute -top-10 -right-10 text-[8rem] font-royal font-bold text-white opacity-5 z-0 pointer-events-none group-hover:opacity-10 transition-opacity">02</div>
+                    <div class="absolute bottom-8 left-8 text-left">
+                        <h4 class="font-royal text-2xl text-white mb-1 group-hover:text-[#bf953f] transition-colors">Elegance</h4>
+                        <p class="font-serif italic text-gray-400 text-sm">Cocktail Hour</p>
                     </div>
                 </div>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m1.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m1.jpg" alt="Gallery image 11"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
+                <!-- Card 8 -->
+                <div class="gallery-frame h-96 group relative mt-0" onclick="openLightbox(7)">
+                    <div class="img-wrapper">
+                        <div class="reveal-curtain"></div>
+                        <img src="images/m8.jpg" class="gallery-img" alt="Performance">
                     </div>
+                    <div class="absolute -bottom-10 -left-10 text-[8rem] font-royal font-bold text-white opacity-5 z-0 pointer-events-none group-hover:opacity-10 transition-opacity">03</div>
                 </div>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m2.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m2.jpg" alt="Gallery image 12"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
+                <!-- Card 9 (Offset) -->
+                <div class="gallery-frame h-96 group relative md:mt-24" onclick="openLightbox(8)">
+                    <div class="img-wrapper">
+                        <div class="reveal-curtain"></div>
+                        <img src="images/m9.jpg" class="gallery-img" alt="Decor">
                     </div>
+                    <div class="absolute -bottom-10 -right-10 text-[8rem] font-royal font-bold text-white opacity-5 z-0 pointer-events-none group-hover:opacity-10 transition-opacity">04</div>
                 </div>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m3.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m3.jpg" alt="Gallery image 13"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </section>
 
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m4.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m4.jpg" alt="Gallery image 14"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m5.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m5.jpg" alt="Gallery image 15"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m6.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m6.jpg" alt="Gallery image 16"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div> </section>
-        <section class="mb-16 bg-white/5 backdrop-blur-md rounded-2xl shadow-xl p-6 md:p-10">
-
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-extrabold text-white mb-2 uppercase tracking-wide">
-                    SHREYA GHOSHAL
-                </h2>
-                <p class="text-lg text-gray-400">A night of melody and magic.</p>
+        <!-- SECTION 3: CULTURAL (Full Strip) -->
+        <section class="mb-20">
+            <div class="flex flex-col items-center justify-center mb-20">
+                <h3 class="text-5xl font-royal text-white uppercase tracking-widest mb-2">Traditions</h3>
+                <p class="font-script text-[#bf953f] text-2xl">Heritage & Culture</p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m7.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m7.jpg" alt="Gallery image 17"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4">
+                <div class="gallery-frame h-64" onclick="openLightbox(9)">
+                    <div class="img-wrapper"><div class="reveal-curtain"></div><img src="images/m10.jpg" class="gallery-img"></div>
                 </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m8.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m8.jpg" alt="Gallery image 18"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
+                <div class="gallery-frame h-64" onclick="openLightbox(0)">
+                    <div class="img-wrapper"><div class="reveal-curtain"></div><img src="images/m1.jpg" class="gallery-img"></div>
                 </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m9.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m9.jpg" alt="Gallery image 19"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
+                <div class="gallery-frame h-64" onclick="openLightbox(1)">
+                    <div class="img-wrapper"><div class="reveal-curtain"></div><img src="images/m2.jpg" class="gallery-img"></div>
                 </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m10.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m10.jpg" alt="Gallery image 20"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m1.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m1.jpg" alt="Gallery image 21"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m2.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m2.jpg" alt="Gallery image 22"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m3.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m3.jpg" alt="Gallery image 23"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m4.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m4.jpg" alt="Gallery image 24"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div> </section>
-        <section class="mb-16 bg-white/5 backdrop-blur-md rounded-2xl shadow-xl p-6 md:p-10">
-
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-extrabold text-white mb-2 uppercase tracking-wide">
-                    HOLI HAI
-                </h2>
-                <p class="text-lg text-gray-400">A vibrant splash of colors and joy.</p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m5.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m5.jpg" alt="Gallery image 25"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m6.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m6.jpg" alt="Gallery image 26"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m7.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m7.jpg" alt="Gallery image 27"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m8.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m8.jpg" alt="Gallery image 28"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m9.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m9.jpg" alt="Gallery image 29"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m10.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m10.jpg" alt="Gallery image 30"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m1.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m1.jpg" alt="Gallery image 31"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m2.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m2.jpg" alt="Gallery image 32"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m3.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m3.jpg" alt="Gallery image 33"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m4.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m4.jpg" alt="Gallery image 34"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m5.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m5.jpg" alt="Gallery image 35"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m6.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m6.jpg" alt="Gallery image 36"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div> </section>
-        <section class="mb-16 bg-white/5 backdrop-blur-md rounded-2xl shadow-xl p-6 md:p-10">
-
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-extrabold text-white mb-2 uppercase tracking-wide">
-                    MEENA BAZAAR
-                </h2>
-                <p class="text-lg text-gray-400">A vibrant marketplace of culture and crafts.</p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m7.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m7.jpg" alt="Gallery image 37"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m8.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m8.jpg" alt="Gallery image 38"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m9.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m9.jpg" alt="Gallery image 39"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m10.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m10.jpg" alt="Gallery image 40"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m1.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m1.jpg" alt="Gallery image 41"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m2.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m2.jpg" alt="Gallery image 42"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m3.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m3.jpg" alt="Gallery image 43"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m4.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m4.jpg" alt="Gallery image 44"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div> </section>
-        <section class="mb-16 bg-white/5 backdrop-blur-md rounded-2xl shadow-xl p-6 md:p-10">
-
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-extrabold text-white mb-2 uppercase tracking-wide">
-                    ROYAL DIWALI GALA
-                </h2>
-                <p class="text-lg text-gray-400">A grand celebration of lights and festivity.</p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m5.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m5.jpg" alt="Gallery image 45"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m6.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m6.jpg" alt="Gallery image 46"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m7.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m7.jpg" alt="Gallery image 47"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m8.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m8.jpg" alt="Gallery image 48"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m9.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m9.jpg" alt="Gallery image 49"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m10.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m10.jpg" alt="Gallery image 50"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m1.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m1.jpg" alt="Gallery image 51"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group rounded-xl p-0.5 transition-all duration-300 hover:bg-gradient-to-r from-blue-400 to-purple-500"
-                    onclick="openLightbox('images/m2.jpg')">
-                    <div class="relative rounded-[10px] overflow-hidden bg-gray-900 cursor-pointer">
-                        <img src="images/m2.jpg" alt="Gallery image 52"
-                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div> </section>
-        </main>
-    <footer class="w-full text-gray-300 py-16 px-4 sm:px-8 lg:px-12">
-        <div class="max-w-7xl mx-auto">
-
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-12">
-
-                <div class="col-span-2 lg:col-span-2">
-                    <h3 class="text-lg font-normal text-white max-w-xs mb-6">Sign-up now to receive pre sale access and
-                        20% off
-                        merch.</h3>
-                    <a href="#"
-                        class="inline-block bg-brand-pink text-white font-bold py-3 px-10 rounded-full text-base shadow-lg hover:bg-brand-pink-dark transition-colors">
-                        Subscribe
-                    </a>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold uppercase text-white tracking-wider mb-4">Social</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#"
-                                class="text-base font-normal hover:text-brand-pink transition-colors">Instagram</a></li>
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">TikTok</a>
-                        </li>
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">X</a></li>
-                        <li><a href="#"
-                                class="text-base font-normal hover:text-brand-pink transition-colors">Facebook</a>
-                        </li>
-                        <li><a href="#"
-                                class="text-base font-normal hover:text-brand-pink transition-colors">Pinterest</a>
-                        </li>
-                        <li><a href="#"
-                                class="text-base font-normal hover:text-brand-pink transition-colors">Snapchat</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold uppercase text-white tracking-wider mb-4">Music</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#"
-                                class="text-base font-normal hover:text-brand-pink transition-colors">Spotify</a></li>
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Apple
-                                Music</a>
-                        </li>
-                        <li><a href="#"
-                                class="text-base font-normal hover:text-brand-pink transition-colors">Soundcloud</a></li>
-                        <li><a href="#"
-                                class="text-base font-normal hover:text-brand-pink transition-colors">YouTube</a></li>
-                    </ul>
+                <div class="gallery-frame h-64" onclick="openLightbox(2)">
+                    <div class="img-wrapper"><div class="reveal-curtain"></div><img src="images/m3.jpg" class="gallery-img"></div>
                 </div>
             </div>
+        </section>
 
-            <hr class="my-12 border-gray-700">
+    </main>
 
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-12">
-
-                <div class="col-span-2 lg:col-span-2">
-                    <p class="text-xs text-white mb-2">Powered By</p>
-                    <img src="images/TNL.png" alt="TNL Logo" class="h-6 mb-6">
-                    <p class="text-xs text-white">&copy; 2017 - 2025 Ushuaïa Entertainment, SL All rights reserved
-                    </p>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold uppercase text-white tracking-wider mb-4">Legal</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Terms and
-                                Conditions</a></li>
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Protection
-                                of
-                                Personal Data</a></li>
-                        <li><a href="#"
-                                class="text-base font-normal hover:text-brand-pink transition-colors">Cookies
-                                Policy</a></li>
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Cookie
-                                Settings</a></li>
-                        <li><a href="#"
-                                class="text-base font-normal hover:text-brand-pink transition-colors">Privacy
-                                Policy</a></li>
-                        <li><a href="#"
-                                class="text-base font-normal hover:text-brand-pink transition-colors">Refund
-                                Policy</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold uppercase text-white tracking-wider mb-4">Community</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">FAQs /
-                                Contact</a></li>
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">About</a>
-                        </li>
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">VIP
-                                Tables</a>
-                        </li>
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">VIP Info:
-                                +34
-                                971 129 418</a></li>
-                        <li><a href="#" class="text-base font-normal hover:text-brand-pink transition-colors">Store</a>
-                        </li>
-                    </ul>
-                </div>
+    <!-- FOOTER -->
+    <footer class="w-full bg-[#1a0000] text-[#f3e5ab] py-20 border-t border-[#bf953f]/30 relative z-20">
+        <div class="container mx-auto px-6 text-center">
+            <img src="images/dj.png" class="h-16 mx-auto mb-6 opacity-80" alt="Logo">
+            <div class="text-4xl font-royal font-bold tracking-widest mb-4 text-white">DJ PRASHANT</div>
+            <p class="text-sm font-light tracking-[0.2em] mb-10 opacity-60 max-w-lg mx-auto">CRAFTING TIMELESS MEMORIES WITH ELEGANCE AND PASSION SINCE 2010</p>
+            
+            <div class="flex justify-center gap-10 mb-10">
+                <a href="#" class="hover:text-[#bf953f] transition-transform hover:-translate-y-1 duration-300"><i class="fab fa-instagram text-2xl"></i></a>
+                <a href="#" class="hover:text-[#bf953f] transition-transform hover:-translate-y-1 duration-300"><i class="fab fa-facebook text-2xl"></i></a>
+                <a href="#" class="hover:text-[#bf953f] transition-transform hover:-translate-y-1 duration-300"><i class="fab fa-twitter text-2xl"></i></a>
+                <a href="#" class="hover:text-[#bf953f] transition-transform hover:-translate-y-1 duration-300"><i class="fas fa-envelope text-2xl"></i></a>
             </div>
+            
+            <div class="w-24 h-[1px] bg-[#bf953f]/30 mx-auto mb-8"></div>
+            
+            <div class="flex justify-center gap-6 text-xs text-gray-500 font-royal tracking-widest">
+                <a href="#" class="hover:text-white">PRIVACY POLICY</a>
+                <a href="#" class="hover:text-white">TERMS OF USE</a>
+                <a href="#" class="hover:text-white">CONTACT</a>
+            </div>
+            <p class="text-[10px] text-gray-600 mt-6">&copy; 2025 DJ PRASHANT PRODUCTIONS. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
-    </body>
 
+    <!-- ROYAL LIGHTBOX -->
+    <div id="lightbox" class="fixed inset-0 z-[9999] hidden flex justify-center items-center opacity-0 transition-opacity duration-500">
+        <!-- Close Btn -->
+        <button class="absolute top-8 right-8 text-[#bf953f] text-5xl hover:text-white transition-colors z-50 font-thin focus:outline-none" onclick="closeLightbox()">&times;</button>
+        
+        <!-- Nav Btns -->
+        <button class="absolute left-4 md:left-10 text-white text-4xl md:text-6xl hover:text-[#bf953f] transition-all z-50 focus:outline-none" onclick="changeImage(-1)">&#10094;</button>
+        <button class="absolute right-4 md:right-10 text-white text-4xl md:text-6xl hover:text-[#bf953f] transition-all z-50 focus:outline-none" onclick="changeImage(1)">&#10095;</button>
+
+        <!-- Main Image Container -->
+        <div class="relative max-w-[90vw] max-h-[85vh] p-4 border-2 border-[#bf953f]/40 bg-[#0f0000] shadow-2xl transform scale-95 transition-transform duration-300" id="lightbox-content">
+            <img id="lightbox-img" src="" class="max-w-full max-h-[80vh] object-contain shadow-lg mx-auto">
+            
+            <!-- Caption -->
+            <div class="mt-4 text-center">
+                <div class="font-royal text-[#bf953f] text-lg md:text-xl tracking-widest">EXCLUSIVE PREVIEW</div>
+                <p class="text-gray-400 font-serif italic text-sm" id="lightbox-caption">Image 1 of 10</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- 1. PRELOADER & REVEAL ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+                
+                // Trigger Header Animation
+                document.querySelectorAll('.fade-in-elem').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            }, 1500); 
+        });
+
+        // --- 3. CURTAIN REVEAL ON SCROLL ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Reveal the curtain
+                    const curtain = entry.target.querySelector('.reveal-curtain');
+                    if(curtain) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.gallery-frame').forEach(el => observer.observe(el));
+
+        // --- 4. GOLD DUST PARTICLES ---
+        const dustContainer = document.getElementById('dust-container');
+        const particleCount = 20;
+        
+        for(let i=0; i<particleCount; i++){
+            const particle = document.createElement('div');
+            particle.classList.add('dust-particle');
+            const size = Math.random() * 3 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            dustContainer.appendChild(particle);
+        }
+
+        // --- 5. LIGHTBOX LOGIC ---
+        // Define images explicitly to allow navigation
+        const images = [
+            "images/m1.jpg", "images/m2.jpg", "images/m3.jpg", "images/m4.jpg", "images/m5.jpg",
+            "images/m6.jpg", "images/m7.jpg", "images/m8.jpg", "images/m9.jpg", "images/m10.jpg"
+        ];
+        
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxContent = document.getElementById('lightbox-content');
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightbox();
+            lightbox.classList.remove('hidden');
+            // Fade in
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightboxContent.classList.remove('scale-95');
+                lightboxContent.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            lightboxContent.classList.remove('scale-100');
+            lightboxContent.classList.add('scale-95');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 500);
+        }
+
+        function changeImage(direction) {
+            // Fade out slightly
+            lightboxImg.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                currentIndex = (currentIndex + direction + images.length) % images.length;
+                updateLightbox();
+                lightboxImg.style.opacity = '1';
+            }, 200);
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = images[currentIndex];
+            lightboxCaption.innerText = `Image ${currentIndex + 1} of ${images.length}`;
+        }
+
+        // Keyboard nav
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+
+    </script>
+</body>
 </html>
