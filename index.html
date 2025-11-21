@@ -144,17 +144,24 @@
 </head>
 
 <body>
-    <header class="fixed top-0 left-0 w-full bg-black z-50 transition-all duration-300">
+ <header class="fixed top-0 left-0 w-full bg-black z-50 shadow-md">
         <nav class="container mx-auto max-w-7xl flex items-start md:items-center justify-center md:justify-between p-4 md:p-6 relative">
 
+            <!-- 1. Left Side: Desktop Logo -->
             <div class="hidden md:block">
                 <a href="#" class="text-white text-2xl font-bold">
-                    <img class="w-16 h-16" src="images/dj.png" alt="Logo">
+                   
+                     <img class="w-16 h-16" src="images/dj.png" alt="Logo"> 
                 </a>
             </div>
+
+            <!-- 2. Center Section -->
             <div>
+                <!-- Mobile Only: Central Layout (Logo + Contact Btn) -->
                 <div class="md:hidden flex flex-col items-center">
                     <a href="#" class="text-white text-2xl font-bold">
+                        
+                       
                         <img class="w-20 h-20" src="images/dj.png" alt="Logo">
                     </a>
                     <div class="mt-2">
@@ -163,6 +170,8 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Desktop Only: Navigation Links -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Home</a>
                     <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Team</a>
@@ -170,71 +179,115 @@
                     <a href="Gallery.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Gallery</a>
                     <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Testimonials</a>
                 </div>
-                </div>
+            </div>
+
+            <!-- 3. Right Side Section -->
             <div>
-                <div class="md:hidden absolute top-4 right-4">
-                    <button class="text-white text-3xl">
-                        &#9776;
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden absolute top-6 right-4">
+                    <button id="mobile-menu-btn" class="text-white focus:outline-none">
+                        <!-- Hamburger Icon -->
+                        <svg id="icon-hamburger" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <!-- Close (X) Icon - Hidden by default -->
+                        <svg id="icon-close" class="hidden w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
                     </button>
                 </div>
+
+                <!-- Desktop Contact Button -->
                 <div class="hidden md:block">
                     <a href="#" class="bg-brand-pink text-white uppercase font-bold px-6 py-3 rounded-md text-sm hover:bg-brand-pink-dark transition-colors">
                         Contact Us
                     </a>
                 </div>
-                </div>
-            </nav>
-    </header>
+            </div>
+        </nav>
 
-        <!-- hero-section -->
-    <section class="hero-section relative h-[120vh] w-full overflow-hidden bg-black">
-        <div class="swiper h-full w-full">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h1.avif');">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h2.avif');">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="h-full w-full flex items-center justify-center bg-black">
-                        <video class="h-full w-full object-cover" autoplay loop muted playsinline>
-                            <source src="videos/h12.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h3.avif');"></div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h4.avif');"></div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="h-full w-full flex items-center justify-center bg-black">
-                        <video class="h-full w-full object-cover" autoplay loop muted playsinline>
-                            <source src="videos/h11.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-            </div>
-        <div class="hero-card absolute top-1/2 left-1/2 z-10 w-11/12 max-w-2xl" style="transform: translate(-50%, -55%);">
-            <div class="bg-white/10 backdrop-blur-md rounded-2xl border-2 border-white shadow-2xl p-2 md:p-4 text-center text-white">
-                <p class="text-2xl md:text-3xl font-light uppercase tracking-widest" style="transform: translateZ(20px);">
-                    It's all about the
-                </p>
-                <h1 class="text-7xl md:text-7xl font-black uppercase tracking-wider my-2" style="transform: translateZ(50px);">
-                    Experience
-                </h1>
+        <!-- 4. Mobile Menu Dropdown (Hidden by default) -->
+        <!-- This sits outside the nav flex container but inside the header -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black w-full border-t border-gray-800 absolute left-0 top-full shadow-xl">
+            <div class="flex flex-col px-4 py-6 space-y-4 items-center">
+                <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Home</a>
+                <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Team</a>
+                <a href="Services.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Services</a>
+                <a href="Gallery.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Gallery</a>
+                <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Testimonials</a>
             </div>
         </div>
-        </section>
+    </header>
+
+       <!-- hero section -->
+<section class="hero-section relative h-[100vh] md:h-[120vh] w-full overflow-hidden bg-black">
+
+    <div class="swiper h-full w-full">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h1.avif');"></div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h2.avif');"></div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="h-full w-full flex items-center justify-center bg-black">
+                    <video class="h-full w-full object-cover" autoplay loop muted playsinline>
+                        <source src="videos/h12.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h3.avif');"></div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="h-full w-full bg-cover bg-center" style="background-image: url('images/h4.avif');"></div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="h-full w-full flex items-center justify-center bg-black">
+                    <video class="h-full w-full object-cover" autoplay loop muted playsinline>
+                        <source src="videos/h11.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+
+        <!-- Smaller arrows for mobile -->
+        <div class="swiper-button-prev !scale-75 md:!scale-100"></div>
+        <div class="swiper-button-next !scale-75 md:!scale-100"></div>
+    </div>
+
+    <!-- Hero Text Card -->
+    <div class="hero-card absolute top-1/2 left-1/2 z-10 
+                w-[90%] max-w-xl 
+                px-2 sm:px-0
+                transform -translate-x-1/2 -translate-y-[60%]">
+
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl border-2 border-white shadow-2xl p-3 sm:p-4 text-center text-white">
+
+            <p class="text-xl sm:text-2xl md:text-3xl font-light uppercase tracking-widest">
+                It's all about the
+            </p>
+
+           <h1 class="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-wider my-1 sm:my-2">
+    Experience
+</h1>
+
+
+        </div>
+    </div>
+
+</section>
+
 
         <!-- testimonials-section -->
     <section class="testimonials-bg relative py-20 md:py-32">
@@ -306,20 +359,23 @@
 
      
       <!-- ABOUT SECTION -->
-    <section class="relative w-full min-h-screen flex flex-col justify-center py-20 overflow-hidden">
+    <section class="relative w-full min-h-screen flex flex-col justify-center py-12 md:py-20 overflow-hidden">
 
         <div class="absolute top-1/4 left-0 w-full opacity-5 transform -rotate-6 pointer-events-none select-none overflow-hidden">
-            <div class="whitespace-nowrap animate-[scroll_20s_linear_infinite] text-[15rem] font-black font-teko text-white leading-none">
+            <!-- Adjusted text size: Smaller on mobile, Huge on desktop -->
+            <div class="whitespace-nowrap animate-[scroll_20s_linear_infinite] text-[6rem] md:text-[10rem] lg:text-[15rem] font-black font-teko text-white leading-none">
                 DJ PRASHANT • KING OF CLUBS • THE LEGEND • DJ PRASHANT • KING OF CLUBS • THE LEGEND •
             </div>
         </div>
 
+        <!-- 1. Main Layout -->
         <div class="container mx-auto px-4 relative z-10">
             
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
                 
-                <div class="lg:col-span-5 relative group perspective-1000">
- 
+                <!-- LEFT: The Visual Hook (Image/Video Placeholder) -->
+                <div class="lg:col-span-5 relative group perspective-1000 mb-8 lg:mb-0">
+                    <!-- Rotating Text Badge (Hidden on Mobile) -->
                     <div class="absolute -top-12 -right-12 z-20 hidden md:block">
                         <div class="relative w-32 h-32 animate-[spin_10s_linear_infinite]">
                             <svg class="w-full h-full" viewBox="0 0 100 100">
@@ -335,64 +391,71 @@
                         </div>
                     </div>
 
-
-                    <div class="relative h-[500px] w-full bg-black overflow-hidden transform transition-transform duration-700 group-hover:rotate-2 border-2 border-white/10">
-
+                    <!-- Main Image Frame -->
+                    <!-- Adjusted Height: h-[350px] for mobile, h-[500px] for desktop -->
+                    <div class="relative h-[350px] md:h-[500px] w-full bg-black overflow-hidden transform transition-transform duration-700 group-hover:rotate-2 border-2 border-white/10">
+                        <!-- Image -->
                         <img src="images/DSC02755.jpg" alt="DJ Prashant Live" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-
+                        
+                        <!-- Glitch Overlay -->
                         <div class="absolute inset-0 bg-brand-pink/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                        <div class="absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-white/80"></div>
-                        <div class="absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-brand-pink"></div>
+                        
+                        <!-- Corner Accents (Smaller on mobile) -->
+                        <div class="absolute top-4 left-4 w-8 h-8 md:w-12 md:h-12 border-t-4 border-l-4 border-white/80"></div>
+                        <div class="absolute bottom-4 right-4 w-8 h-8 md:w-12 md:h-12 border-b-4 border-r-4 border-brand-pink"></div>
                     </div>
-
-                    <div class="absolute top-4 left-4 w-full h-full border border-brand-pink/30 -z-10"></div>
+                    
+                    <!-- Back Shadow Box (Hidden on mobile to save space) -->
+                    <div class="absolute top-4 left-4 w-full h-full border border-brand-pink/30 -z-10 hidden md:block"></div>
                 </div>
 
+                <!-- RIGHT: The Content -->
                 <div class="lg:col-span-7 text-left lg:pl-12 relative">
-
+                    
+                    <!-- Floating Decoration (Hidden on mobile) -->
                     <div class="absolute -left-8 top-20 w-1 h-32 bg-gradient-to-b from-brand-pink to-transparent hidden lg:block"></div>
 
-                    <h4 class="text-brand-pink font-bold tracking-[0.4em] uppercase mb-4 flex items-center gap-4">
-                        <span class="w-12 h-[2px] bg-brand-pink"></span> Since 2010
+                    <h4 class="text-brand-pink font-bold tracking-[0.2em] md:tracking-[0.4em] uppercase mb-2 md:mb-4 flex items-center gap-4 text-sm md:text-base">
+                        <span class="w-8 md:w-12 h-[2px] bg-brand-pink"></span> Since 2010
                     </h4>
                     
-                    <h1 class="text-7xl md:text-9xl font-black font-teko text-white leading-[0.85] mb-8">
+                    <!-- Responsive Heading Sizes -->
+                    <h1 class="text-6xl md:text-7xl lg:text-9xl font-black font-teko text-white leading-[0.9] md:leading-[0.85] mb-6 md:mb-8">
                         BEYOND <br>
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D946EF] to-white">NIGHTLIFE</span>
                     </h1>
 
-                    <div class="space-y-6 text-lg text-gray-200 font-light leading-relaxed">
+                    <div class="space-y-4 md:space-y-6 text-base md:text-lg text-gray-200 font-light leading-relaxed">
                         <p>
-                            <strong class="text-white text-xl uppercase font-bold">DJ Prashant</strong> is not just an artist; he is a <span class="bg-white/10 px-1 italic">movement</span>. An architect of sound who transforms ordinary nights into explosive memories.
+                            <strong class="text-white text-lg md:text-xl uppercase font-bold">DJ Prashant</strong> is not just an artist; he is a <span class="bg-white/10 px-1 italic">movement</span>. An architect of sound who transforms ordinary nights into explosive memories.
                         </p>
                         <p>
                             Through the unifying power of the dancefloor, we connect the worlds of music, art, and fashion. DJ PRASHANT goes beyond the nightclub experience; it is a cultural epicentre where strangers become a tribe.
                         </p>
-                        <p class="border-l-4 border-brand-pink pl-6 py-2 my-4 italic text-gray-300 text-xl font-teko tracking-wide">
+                        <p class="border-l-4 border-brand-pink pl-4 md:pl-6 py-2 my-4 italic text-gray-300 text-lg md:text-xl font-teko tracking-wide">
                             "One Beat. One Tribe. Infinite Hype."
                         </p>
                     </div>
 
- 
-                    <div class="grid grid-cols-3 gap-6 mt-10 border-t border-white/10 pt-8">
+                    <!-- Stats Row -->
+                    <div class="grid grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-10 border-t border-white/10 pt-6 md:pt-8 text-center lg:text-left">
                         <div>
-                            <span class="block text-4xl font-bold font-teko text-white">500+</span>
-                            <span class="text-xs text-brand-pink uppercase tracking-widest">Events</span>
+                            <span class="block text-3xl md:text-4xl font-bold font-teko text-white">500+</span>
+                            <span class="text-[10px] md:text-xs text-brand-pink uppercase tracking-widest">Events</span>
                         </div>
                         <div>
-                            <span class="block text-4xl font-bold font-teko text-white">10k+</span>
-                            <span class="text-xs text-brand-pink uppercase tracking-widest">Crowd</span>
+                            <span class="block text-3xl md:text-4xl font-bold font-teko text-white">10k+</span>
+                            <span class="text-[10px] md:text-xs text-brand-pink uppercase tracking-widest">Crowd</span>
                         </div>
                         <div>
-                            <span class="block text-4xl font-bold font-teko text-white">#01</span>
-                            <span class="text-xs text-brand-pink uppercase tracking-widest">Rating</span>
+                            <span class="block text-3xl md:text-4xl font-bold font-teko text-white">#01</span>
+                            <span class="text-[10px] md:text-xs text-brand-pink uppercase tracking-widest">Rating</span>
                         </div>
                     </div>
 
- 
-                    <div class="mt-10">
-                        <button class="group relative px-8 py-3 bg-transparent border-2 border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 overflow-hidden">
+                    <!-- CTA -->
+                    <div class="mt-8 md:mt-10 flex justify-center lg:justify-start">
+                        <button class="group relative px-6 py-3 md:px-8 md:py-3 bg-transparent border-2 border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 overflow-hidden text-sm md:text-base">
                             <span class="relative z-10 group-hover:translate-x-2 transition-transform duration-300 inline-block">Discover The Legacy</span>
                             <div class="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
                         </button>
@@ -1582,6 +1645,22 @@ document.addEventListener('DOMContentLoaded', () => {
             setupCarousel('news-carousel-container', 'news-pagination-dots', '.news-carousel-item');
             setupDragToScroll('news-carousel-container');
 
+        });
+
+
+
+           const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const iconHamburger = document.getElementById('icon-hamburger');
+        const iconClose = document.getElementById('icon-close');
+
+        btn.addEventListener('click', () => {
+            // Toggle Menu Visibility
+            menu.classList.toggle('hidden');
+            
+            // Toggle Icons (Hamburger vs X)
+            iconHamburger.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
         });
     </script>
 </body>
