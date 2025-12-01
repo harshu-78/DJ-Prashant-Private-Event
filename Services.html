@@ -9,105 +9,222 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Teko:wght@300;500;700&display=swap');
-   body {
-            font-family: 'Montserrat', sans-serif;
-            color: #f5f5f5;
-            background-color: #4A0000;
-            background-image: linear-gradient(135deg, #2a0000 0%, #800000 50%, #4A0000 100%);
-            background-attachment: fixed;
-            background-size: cover;
-        }
-        /* --- GLITCH TEXT EFFECT --- */
-        .glitch {
-            position: relative;
-            color: white;
-            font-family: 'Teko', sans-serif;
-            letter-spacing: 2px;
-        }
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Teko:wght@300;500;700&display=swap');
 
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+    /* --- GLOBAL THEME OVERRIDES --- */
+    body {
+        font-family: 'Montserrat', sans-serif;
+        /* Pastel Gradient Background */
+        background-color: #fdf4ff;
+        background-image: linear-gradient(135deg, #fff1f2 0%, #fdf4ff 50%, #f0f9ff 100%);
+        background-attachment: fixed;
+        background-size: cover;
+        color: #4b5563; /* Slate Grey for readability */
+    }
 
-        .glitch::before {
-            left: 2px;
-            text-shadow: -1px 0 #ff00c1;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim-1 5s infinite linear alternate-reverse;
-        }
+    /* --- HEADER OVERRIDES --- */
+    /* Force Header to be White Glassmorphism instead of Black */
+    header.bg-black {
+        background-color: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
 
-        .glitch::after {
-            left: -2px;
-            text-shadow: -1px 0 #00fff9;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim-2 5s infinite linear alternate-reverse;
-        }
+    /* Force Nav Links to be Dark Grey instead of White */
+    nav a.text-white, 
+    #mobile-menu a.text-white {
+        color: #4b5563 !important;
+    }
+    
+    nav a.text-white:hover, 
+    #mobile-menu a.text-white:hover {
+        color: #d946ef !important; /* Matches pastel pink accent */
+    }
 
-        @keyframes glitch-anim-1 {
-            0% { clip: rect(30px, 9999px, 10px, 0); }
-            20% { clip: rect(80px, 9999px, 90px, 0); }
-            40% { clip: rect(10px, 9999px, 50px, 0); }
-            60% { clip: rect(60px, 9999px, 20px, 0); }
-            80% { clip: rect(40px, 9999px, 70px, 0); }
-            100% { clip: rect(90px, 9999px, 30px, 0); }
-        }
+    /* Mobile Menu Background */
+    #mobile-menu {
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        border-top: 1px solid #f3f4f6 !important;
+    }
 
-        @keyframes glitch-anim-2 {
-            0% { clip: rect(10px, 9999px, 80px, 0); }
-            20% { clip: rect(70px, 9999px, 30px, 0); }
-            40% { clip: rect(20px, 9999px, 60px, 0); }
-            60% { clip: rect(50px, 9999px, 90px, 0); }
-            80% { clip: rect(90px, 9999px, 10px, 0); }
-            100% { clip: rect(30px, 9999px, 50px, 0); }
-        }
+    /* Mobile Menu Toggle Button */
+    #mobile-menu-btn {
+        color: #4b5563 !important;
+    }
 
-       /* Update Marquee CSS in your <style> tag */
-.marquee-container {
-    overflow: hidden;
-    white-space: nowrap;
-    position: absolute;
-    bottom: -10px; /* Thoda niche khiska diya taaki gap na dikhe */
-    width: 100%;
-    background: #D946EF; 
-    color: white;
-    font-family: 'Teko', sans-serif;
-    font-weight: 700;
-    font-size: 1.8rem; /* Size badha diya */
-    text-transform: uppercase;
-    padding: 15px 0; /* Thodi moti patti */
-    z-index: 30;
-    transform: rotate(-2deg) scale(1.1); 
-    box-shadow: 0 0 30px rgba(217, 70, 239, 0.6); /* Glow effect badhaya */
-}
+    /* --- HERO SECTION OVERRIDES --- */
+    /* Remove the heavy black gradients */
+    .bg-gradient-to-b {
+        background: linear-gradient(to bottom, rgba(74, 4, 78, 0.2), rgba(255, 241, 242, 1)) !important;
+    }
 
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
-        }
+    /* Keep Hero Text White for contrast against video, but add soft shadow */
+    section h1, section h3, section p {
+        text-shadow: 0 2px 10px rgba(168, 85, 247, 0.2);
+    }
+    
+    section p {
+        color: #4b5563 !important;
+        font-weight: 500;
+    }
 
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+    /* Hero "Explore Services" Button */
+    a[href="#services-list"] {
+        border-color: #e879f9 !important;
+        color: #4b5563 !important;
+        background: rgba(255,255,255,0.6);
+    }
+    a[href="#services-list"] span.bg-brand-pink {
+        background-color: #e879f9 !important;
+    }
+    a[href="#services-list"]:hover {
+        box-shadow: 0 0 25px rgba(232, 121, 249, 0.4) !important;
+        border-color: #e879f9 !important;
+    }
+    a[href="#services-list"]:hover span.relative {
+        color: #ffffff !important;
+    }
 
-        /* Hover Card Effects */
-        .service-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px -10px rgba(217, 70, 239, 0.3);
-            border-color: #D946EF;
-        }
-    </style>
+    /* --- GLITCH TEXT EFFECT (PASTEL VERSION) --- */
+    .glitch {
+        position: relative;
+        color: #4b5563 !important; /* Dark Grey base */
+        font-family: 'Teko', sans-serif;
+        letter-spacing: 2px;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 #f0abfc; /* Pastel Purple shadow */
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim-1 5s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 #93c5fd; /* Pastel Blue shadow */
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim-2 5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim-1 {
+        0% { clip: rect(30px, 9999px, 10px, 0); }
+        20% { clip: rect(80px, 9999px, 90px, 0); }
+        40% { clip: rect(10px, 9999px, 50px, 0); }
+        60% { clip: rect(60px, 9999px, 20px, 0); }
+        80% { clip: rect(40px, 9999px, 70px, 0); }
+        100% { clip: rect(90px, 9999px, 30px, 0); }
+    }
+
+    @keyframes glitch-anim-2 {
+        0% { clip: rect(10px, 9999px, 80px, 0); }
+        20% { clip: rect(70px, 9999px, 30px, 0); }
+        40% { clip: rect(20px, 9999px, 60px, 0); }
+        60% { clip: rect(50px, 9999px, 90px, 0); }
+        80% { clip: rect(90px, 9999px, 10px, 0); }
+        100% { clip: rect(30px, 9999px, 50px, 0); }
+    }
+
+    /* --- MARQUEE (PASTEL POP) --- */
+    .marquee-container {
+        overflow: hidden;
+        white-space: nowrap;
+        position: absolute;
+        bottom: -10px;
+        width: 100%;
+        /* Pastel Lavender Background */
+        background: #c084fc !important; 
+        color: #ffffff;
+        font-family: 'Teko', sans-serif;
+        font-weight: 700;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        padding: 15px 0;
+        z-index: 30;
+        transform: rotate(-2deg) scale(1.1);
+        /* Soft Lavender Glow */
+        box-shadow: 0 0 30px rgba(192, 132, 252, 0.5) !important;
+    }
+
+    .marquee-content {
+        display: inline-block;
+        animation: marquee 20s linear infinite;
+    }
+
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* --- CARDS & SERVICES --- */
+    .services-section {
+        background: transparent !important;
+    }
+
+    .services-section h2 {
+        color: #374151 !important;
+    }
+
+    /* Service Card Styles */
+    .service-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    /* Target the Tailwind 'group' containers */
+    .group {
+        border-radius: 12px;
+        box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05); /* Soft shadow */
+    }
+
+    /* Card Image Hover */
+    .group:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px -12px rgba(244, 114, 182, 0.25); /* Pastel Pink shadow */
+    }
+
+    /* Card Overlay Background (Pink -> Soft Purple) */
+    .group .bg-brand-pink {
+        background-color: #f0abfc !important; /* Fallback */
+        background-image: linear-gradient(135deg, #f0abfc 0%, #c084fc 100%) !important;
+    }
+    
+    /* Buttons inside cards */
+    .group a {
+        color: white !important;
+    }
+
+    /* General Button Overrides (Contact Us) */
+    .bg-brand-pink {
+        background-color: #e879f9 !important; /* Pastel Fuchsia */
+        box-shadow: 0 4px 14px 0 rgba(232, 121, 249, 0.39);
+    }
+    .bg-brand-pink:hover {
+        background-color: #d946ef !important;
+        transform: translateY(-1px);
+    }
+    
+    /* Separator Line */
+    .w-20.h-1.bg-brand-pink {
+        background-color: #e879f9 !important;
+    }
+    
+    /* Text Accents */
+    .text-brand-pink {
+        color: #d946ef !important;
+    }
+</style>
 
     <script>
         tailwind.config = {
