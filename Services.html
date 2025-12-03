@@ -23,43 +23,21 @@
         color: #4b5563; /* Slate Grey for readability */
     }
 
-    /* --- HEADER OVERRIDES --- */
-    /* Force Header to be White Glassmorphism instead of Black */
-    header.bg-black {
-        background-color: rgba(255, 255, 255, 0.85) !important;
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    }
 
     /* Force Nav Links to be Dark Grey instead of White */
     nav a.text-white, 
     #mobile-menu a.text-white {
         color: #4b5563 !important;
     }
-    
-    nav a.text-white:hover, 
-    #mobile-menu a.text-white:hover {
-        color: #d946ef !important; /* Matches pastel pink accent */
-    }
 
-    /* Mobile Menu Background */
-    #mobile-menu {
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        border-top: 1px solid #f3f4f6 !important;
-    }
+
 
     /* Mobile Menu Toggle Button */
     #mobile-menu-btn {
         color: #4b5563 !important;
     }
 
-    /* --- HERO SECTION OVERRIDES --- */
-    /* Remove the heavy black gradients */
-    .bg-gradient-to-b {
-        background: linear-gradient(to bottom, rgba(74, 4, 78, 0.2), rgba(255, 241, 242, 1)) !important;
-    }
-
+   
     /* Keep Hero Text White for contrast against video, but add soft shadow */
     section h1, section h3, section p {
         text-shadow: 0 2px 10px rgba(168, 85, 247, 0.2);
@@ -245,60 +223,81 @@
 
 <body>
 
-    <header class="fixed top-0 left-0 w-full bg-black z-50 transition-all duration-300">
+ <header class="fixed top-0 left-0 w-full bg-gray-600 bg-opacity-95 backdrop-blur-md z-50 shadow-lg border-b border-gray-600">
         <nav class="container mx-auto max-w-7xl flex items-start md:items-center justify-center md:justify-between p-4 md:p-6 relative">
-
+            
             <div class="hidden md:block">
-                <a href="#" class="text-white text-2xl font-bold">
-                    <img class="w-16 h-16 object-contain" src="images/dj.png" alt="Logo">
+                <a href="#" class="block hover:scale-105 transition-transform duration-300">
+                    <img class="w-20 h-20 object-contain drop-shadow-md" src="images/dj.png" alt="Logo">
                 </a>
             </div>
 
             <div>
                 <div class="md:hidden flex flex-col items-center">
-                    <a href="#" class="text-white text-2xl font-bold">
-                        <img class="w-20 h-20 object-contain" src="images/dj.png" alt="Logo">
+                    <a href="#" class="block hover:scale-105 transition-transform duration-300 mb-2">
+                        <img class="w-24 h-24 object-contain drop-shadow-md" src="images/dj.png" alt="Logo">
                     </a>
-                    <div class="mt-2">
-                        <a href="Contact.html" class="bg-brand-pink text-white uppercase font-bold px-4 py-2 rounded-md text-xs hover:bg-brand-pink-dark transition-colors">
+                    
+                    <div class="mt-1">
+                        <a href="Contact.html" class="bg-brand-pink text-white uppercase font-bold px-5 py-2 rounded-full text-xs shadow-md hover:bg-brand-pink-dark transition-all transform hover:-translate-y-0.5">
                             Contact Us
                         </a>
                     </div>
                 </div>
 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Home</a>
-                    <a href="Team.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Team</a>
-                    <a href="Services.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Services</a>
-                    <a href="Gallery.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Gallery</a>
-                    <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Testimonials</a>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="index.html" class="text-gray-100 uppercase tracking-widest text-sm font-bold hover:text-brand-pink transition-colors relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-pink transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="Team.html" class="text-gray-100 uppercase tracking-widest text-sm font-bold hover:text-brand-pink transition-colors relative group">
+                        Team
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-pink transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="Services.html" class="text-gray-100 uppercase tracking-widest text-sm font-bold hover:text-brand-pink transition-colors relative group">
+                        Services
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-pink transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="Gallery.html" class="text-gray-100 uppercase tracking-widest text-sm font-bold hover:text-brand-pink transition-colors relative group">
+                        Gallery
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-pink transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="text-gray-100 uppercase tracking-widest text-sm font-bold hover:text-brand-pink transition-colors relative group">
+                        Testimonials
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-pink transition-all group-hover:w-full"></span>
+                    </a>
                 </div>
             </div>
 
             <div>
-                <div class="md:hidden absolute top-4 right-4">
-                    <button id="mobile-menu-btn" class="text-white text-3xl focus:outline-none">
-                        &#9776; </button>
+                <div class="md:hidden absolute top-6 right-4">
+                    <button id="mobile-menu-btn" class="text-white focus:outline-none p-2 rounded hover:bg-white/10 transition-colors">
+                        <svg id="icon-hamburger" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <svg id="icon-close" class="hidden w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
                 </div>
 
                 <div class="hidden md:block">
-                    <a href="Contact.html" class="bg-brand-pink text-white uppercase font-bold px-6 py-3 rounded-md text-sm hover:bg-brand-pink-dark transition-colors">
+                    <a href="Contact.html" class="bg-brand-pink text-white uppercase font-bold px-8 py-3 rounded-full text-sm shadow-lg  hover:shadow-brand-pink/30 transition-all transform hover:-translate-y-1">
                         Contact Us
                     </a>
                 </div>
             </div>
         </nav>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-black w-full border-t border-gray-800 shadow-lg absolute top-full left-0">
-            <div class="flex flex-col items-center py-4 space-y-4">
-                <a href="index.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Home</a>
-                <a href="Team.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Team</a>
-                <a href="Services.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Services</a>
-                <a href="Gallery.html" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Gallery</a>
-                <a href="#" class="text-white uppercase tracking-wider font-semibold hover:text-brand-pink transition-colors">Testimonials</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 w-full border-t border-gray-800 absolute left-0 top-full shadow-2xl transition-all duration-300">
+            <div class="flex flex-col px-6 py-8 space-y-6 items-center">
+                <a href="index.html" class="text-gray-200 text-lg uppercase tracking-wider font-bold hover:text-brand-pink transition-colors">Home</a>
+                <a href="Team.html" class="text-gray-200 text-lg uppercase tracking-wider font-bold hover:text-brand-pink transition-colors">Team</a>
+                <a href="Services.html" class="text-gray-200 text-lg uppercase tracking-wider font-bold hover:text-brand-pink transition-colors">Services</a>
+                <a href="Gallery.html" class="text-gray-200 text-lg uppercase tracking-wider font-bold hover:text-brand-pink transition-colors">Gallery</a>
+                <a href="#" class="text-gray-200 text-lg uppercase tracking-wider font-bold hover:text-brand-pink transition-colors">Testimonials</a>
             </div>
         </div>
-
     </header>
 
    <section class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
